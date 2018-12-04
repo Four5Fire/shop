@@ -8,6 +8,9 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer cartId;
+
+    @Column(name = "user_id")
     private Integer userId;
 
     @Column(name = "product_id")
@@ -54,7 +57,8 @@ public class Cart {
     @Override
     public String toString() {
         return "Cart{" +
-                "userId=" + userId +
+                "cartId=" + cartId +
+                ", userId=" + userId +
                 ", productId=" + productId +
                 ", productNum=" + productNum +
                 ", isBought=" + isBought +

@@ -20,6 +20,9 @@ public class Product {
     @Column(name = "item_id")
     private Integer itemId;
 
+    @Column(name = "stock")
+    private Integer stock;
+
     @Column(name = "brand")
     private String brand;
 
@@ -118,6 +121,14 @@ public class Product {
         this.intro = intro;
     }
 
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -125,6 +136,7 @@ public class Product {
                 ", productName='" + productName + '\'' +
                 ", shopId=" + shopId +
                 ", itemId=" + itemId +
+                ", stock=" + stock +
                 ", brand='" + brand + '\'' +
                 ", priceOriginal=" + priceOriginal +
                 ", priceHigh=" + priceHigh +

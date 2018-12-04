@@ -4,18 +4,6 @@
 <meta charset="utf-8">
 <title>index</title>
 <link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" type="text/css">
-	<script>
-		function orangeCart(elem) {
-			elem.src = '/static/img/购物车鼠标悬浮.png';
-		}
-		function whiteCart(elem) {
-			elem.src = '/static/img/购物车.png';
-		}
-		//展示购物车内的商品
-		function showSelected() {
-			
-		}
-	</script>
 	<style>
 		* {
 			margin: 0;
@@ -210,6 +198,8 @@
 		}
 
 		.four img{
+			width: 150px;
+			height: 150px;
 			margin: 0 auto;
 			max-width: 100% ! important ;
 		}
@@ -381,9 +371,40 @@
 		}
 
 	</style>
+	<script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+	<script>
+
+        function adaptBottom() {
+            let bottomElement = document.getElementById('bottomInfo');
+            if(document.documentElement.offsetHeight - 60 > document.documentElement.clientHeight) {	//底部栏脱离底部
+                bottomElement.style.position = 'relative';
+            }
+            else {
+                bottomElement.style.position = 'absolute';
+                bottomElement.style.bottom = '0px';
+            }
+//			console.log('offsetHeight: ' + document.documentElement.offsetHeight + ' clientHeight: ' + document.documentElement.clientHeight);
+        }
+
+        function addCart(id) {
+            let url = 'http://127.0.0.1:7000/shop/cartAddProduct/'+id;
+            console.log(url);
+            $.ajax({
+                type:'post',
+                url: url,
+                contentType: 'application/json;charset=utf-8',
+                success: function (data) {
+                    alert(data.desc);
+                },
+                error: function () {
+                    alert(data.desc);
+                }
+            })
+        }
+	</script>
 </head>
 
-<body onResize="adaptBottom();">
+<body onresize="adaptBottom()" onload="adaptBottom()">
 <div class="nav" th:include="nouser::${user}">
 </div>
 	<div class="secondNav">
@@ -425,7 +446,7 @@
 											<h4 th:text="${product.getPriceOriginal()}"></h4>
 										</div>
 										<div class="six">
-											<input type="submit" name="submit" value="Add to cart" class="button">
+											<input th:id="${product.getProductId()}" type="button" name="submit" value="Add to cart" class="button" onclick="addCart(this.id)"/>
 										</div>
 									</figure>
 								</div>
@@ -433,29 +454,6 @@
 						</div>
 					</div>
 				</div>
-
-				<nav class="numbering">
-					<ul class="pagination paging">
-						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<!--li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li-->
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li>
-							<a href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
-
-
 			</div>
 		</div>
 	</div>
@@ -465,18 +463,4 @@
 
 </body>
 
-	<script>
-
-        window.onload=function adaptBottom() {
-            let bottomElement = document.getElementById('bottomInfo');
-            if(document.documentElement.offsetHeight - 60 > document.documentElement.clientHeight) {	//底部栏脱离底部
-                bottomElement.style.position = 'relative';
-            }
-            else {
-                bottomElement.style.position = 'absolute';
-                bottomElement.style.bottom = '0px';
-            }
-//			console.log('offsetHeight: ' + document.documentElement.offsetHeight + ' clientHeight: ' + document.documentElement.clientHeight);
-        }
-	</script>
 </html>

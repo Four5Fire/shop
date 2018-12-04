@@ -28,17 +28,14 @@ public class ProductsItem {
 
     @RequestMapping(value = "/productsIndex/{itemId}")
     public String productsItemIndex(HttpServletRequest request, Model model, @PathVariable String itemId){
-        System.out.println(itemId);
         HttpSession session = request.getSession();
+        session.setAttribute("item", itemId);
         model.addAttribute("user","user");
         model.addAttribute("bottomInfo","bottomInfo");
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("itemList",itemList);
-
         List<Product> productList = productDao.findAllByItemId(Integer.parseInt(itemId));
-        for (Product p:productList) {
-            System.out.println(p.getProductName());
-        }
+        int productCount = productList.size();
         model.addAttribute("productList",productList);
         model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productDetail/");
         return "productsItem";

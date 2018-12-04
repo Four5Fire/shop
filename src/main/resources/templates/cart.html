@@ -263,9 +263,9 @@
 			<tbody>
 			<tr v-for="(item, index) in productList">
 				<td class="td-check"><span class="check-span" @click="item.select=!item.select" :class="{'check-true': item.select}"></span></td>
-				<td class="td-product"><img th:src="@{/static/img/testimg.jpg}" width="98" height="98">
+				<td class="td-product"><img :src="item.pro_img" width="98" height="98">
 					<div class="product-info">
-						<h6>{{item.pro_name}}</h6>
+						<h2>{{item.pro_name}}</h2>
 						<p>品牌：{{item.pro_brand}}</p>
 						<p>历史价格区间：{{item.pro_price_low}} ~ {{item.pro_price_high}}</p>
 					</div>
@@ -291,65 +291,22 @@
 	</div>
 	<div class="cart-product-info">
 		<a class="delect-product" href="javascript:;" @click="deleteProduct"><span></span>删除所选商品</a>
-		<a class="keep-shopping" href="#"><span></span>继续购物</a>
+		<a class="keep-shopping" href="http://127.0.0.1:7000/shop/index"><span></span>继续购物</a>
 		<a class="btn-buy fr" href="javascript:;">去结算</a>
 		<p class="fr product-total">￥<span>{{getTotal.totalPrice}}</span></p>
 		<p class="fr check-num"><span>{{getTotal.totalNum}}</span>件商品总计（不含运费）：</p>
 	</div>
-	<!-- 暂时没用 -->
-	<!-- <div class="cart-worder clearfix">
-        <a href="javascript:;" class="choose-worder fl"><span></span>绑定跟单员</a>
-        <div class="worker-info fl">
-        </div>
-    </div> -->
 </div>
 <div id="bottomInfo" th:include="nouser::${bottomInfo}">
 
 </div>
 </body>
 <script th:src="@{/static/js/vue.min.js}"></script>
-<script>
+<script th:inline="javascript">
     new Vue({
         el: '#shopping-cart',
         data: {
-            productList: [
-                {
-                    'pro_name': '【斯文】 甘油 | 丙三醇',//产品名称
-                    'pro_brand': 'skc',//品牌名称
-                    'pro_img': '/static/img/testimg.jpg',//图片链接
-                    'pro_price_low': 600,//历史最低价
-                    'pro_price_high': 800,//历史最高价
-                    'pro_price_original': 700,//现价
-                    'pro_num': 1,
-                },
-                {
-                    'pro_name': '【斯文】 甘油 | 丙三醇',//产品名称
-                    'pro_brand': 'skc',//品牌名称
-                    'pro_img': '/static/img/testimg.jpg',//图片链接
-                    'pro_price_low': 600,//历史最低价
-                    'pro_price_high': 800,//历史最高价
-                    'pro_price_original': 700,//现价
-                    'pro_num': 1,
-                },
-                {
-                    'pro_name': '【斯文】 甘油 | 丙三醇',//产品名称
-                    'pro_brand': 'skc',//品牌名称
-                    'pro_img': '/static/img/testimg.jpg',//图片链接
-                    'pro_price_low': 600,//历史最低价
-                    'pro_price_high': 800,//历史最高价
-                    'pro_price_original': 700,//现价
-                    'pro_num': 1,
-                },
-                {
-                    'pro_name': '【斯文】 甘油 | 丙三醇',//产品名称
-                    'pro_brand': 'skc',//品牌名称
-                    'pro_img': '/static/img/testimg.jpg',//图片链接
-                    'pro_price_low': 600,//历史最低价
-                    'pro_price_high': 800,//历史最高价
-                    'pro_price_original': 700,//现价
-                    'pro_num': 1,
-                }
-            ]
+            productList: [[${productList}]]
         },
         computed: {
             checkNum: function() {
@@ -397,28 +354,6 @@
             })
         }
     });
-    var isLogin = 1;
-    var userCategory = 0;	//0 represents buyer, 1 represents seller
-    function orangeIcon(elem) {
-        if(isLogin) {
-            if(!userCategory) {
-                elem.src = '/static/img/购物车鼠标悬浮.png';
-            }
-            else {
-                //商家店铺
-            }
-        }
-    }
-    function whiteIcon(elem) {
-        if(isLogin) {
-            if(!userCategory) {
-                elem.src = '/static/img/购物车.png';
-            }
-            else {
-                //商家店铺
-            }
-        }
-    }
 
     window.onload=function adaptBottom() {
         let bottomElement = document.getElementById('bottomInfo');

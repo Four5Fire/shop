@@ -74,8 +74,8 @@ public class RegistryController {
             shopUser.setShopName(registryJson.getString("user_name"));
             shopUser.setShopPwd(registryJson.getString("user_pwd"));
             shopUser.setTele(registryJson.getString("tele"));
-            shopUser.setStar(4);
-            shopUser.setShopSold(new BigDecimal(0));
+            shopUser.setStar(new BigDecimal(4.0));
+            shopUser.setShopSold(0);
             shopUser.setFoundDate(getCutTime());
             shopDao.save(shopUser);
             System.out.println(shopUser);

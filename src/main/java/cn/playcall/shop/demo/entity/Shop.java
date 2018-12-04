@@ -21,13 +21,13 @@ public class Shop {
     private String tele;
 
     @Column(name = "star")
-    private Integer star;
+    private BigDecimal star;
 
     @Column(name = "found_date")
     private String foundDate;
 
     @Column(name = "shop_sold")
-    private BigDecimal shopSold;
+    private Integer shopSold;
 
     @Column(name = "shop_pic")
     private String shopPic;
@@ -64,12 +64,16 @@ public class Shop {
         this.shopName = shopName;
     }
 
-    public Integer getStar() {
+    public BigDecimal getStar() {
         return star;
     }
 
-    public void setStar(Integer star) {
+    public void setStar(BigDecimal star) {
         this.star = star;
+    }
+
+    public void setShopSold(Integer shopSold) {
+        this.shopSold = shopSold;
     }
 
     public String getFoundDate() {
@@ -78,14 +82,6 @@ public class Shop {
 
     public void setFoundDate(String foundDate) {
         this.foundDate = foundDate;
-    }
-
-    public BigDecimal getShopSold() {
-        return shopSold;
-    }
-
-    public void setShopSold(BigDecimal shopSold) {
-        this.shopSold = shopSold;
     }
 
     public String getShopPic() {
