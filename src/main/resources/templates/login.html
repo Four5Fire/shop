@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>login</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			background: url(/static/img/loginBack1.jpg) no-repeat;
+			background-size: cover;
+		}
+		.logoImg {
+			width: 200px;
+			height: auto;
+		}
+		.loginInfo {
+			height: 250px;
+			width: 350px;
+			top: 50%;
+			margin-top: -125px;
+			left: 50%;
+			margin-left: -175px;
+			position: absolute;
+			/*background: #fff;*/
+		}
+		.formItem {
+			border: solid 2px rgba(240, 240, 240, 0.5);
+			width: 100%;
+			height: 40px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+		.inputFrame {
+			border: hidden;
+			background-color: transparent;
+			margin-left: 20px;
+			height: 40px;
+			width: 250px;
+			font-size: 1.1em;
+			display: inline;
+			position: absolute;
+			outline: none;
+		}
+		.normalBlock {
+			height: 40px;
+			width: 350px;
+			
+		}
+		.normalBlock > button {
+			height: 40px;
+			width: 354px;
+			border-radius: 20px;
+			border: none;
+			font-size: 1.1em;
+			background-color: rgba(240, 240, 240, 0.5);
+			color: rgb(15, 15, 15);
+		}
+		.normalBlock > button:hover {
+			background-color: transparent;
+			border: solid 2px rgba(240, 240, 240, 0.5);
+			color: rgb(240, 240, 240);
+		}
+		.normalBlock > a {
+			font-size: 0.8em;
+			margin-left: 10px;
+			color: #222;
+		}
+	</style>
+    <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{/static/js/login_registry.js}"></script>
+</head>
+
+<body>
+	<img th:src="@{/static/img/logo.png}" class="logoImg" onclick="window.location.href='http://127.0.0.1:7000/shop/index';"/>
+	<form class="loginInfo">
+		<div class="formItem">
+			<img th:src="@{/static/img/用户.png}" style="width: 30px; height: 30px; margin-top: 5px; margin-left: 20px; display: inline;" />
+			<input id="tele" class="inputFrame" placeholder="手机号" type="text" />
+		</div>
+		<div class="formItem">
+			<img th:src="@{/static/img/密码.png}" style="width: 30px; height: 30px; margin-top: 5px; margin-left: 20px; display: inline;" />
+			<input id="user_pwd" class="inputFrame" placeholder="密码" type="password"/>
+		</div>
+		<div class="normalBlock">
+			<input   class='singlecheck' type="radio"   value="1"    name='用户类型'   checked="checked"/>普通用户
+			<input   class='singlecheck' type="radio"   value="2"    name='用户类型'   checked="checked"/>商家
+		</div>
+		<div class="normalBlock">
+			<button type="button" onclick="login_check()">登录</button>
+		</div>
+		<div class="normalBlock">
+			<a href="http://127.0.0.1:7000/shop/registry">还没有账号？立即注册>>></a>
+		</div>
+	</form>
+</body>
+</html>

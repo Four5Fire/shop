@@ -1,0 +1,326 @@
+/*--
+	Author: W3Layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+/*-- Reset-Code --*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*导航栏*/
+.nav {
+    background: rgb(51, 51, 51);
+    height: 60px;
+}
+.nav_right {
+    height: 60px;
+    position: absolute;
+    left: 70%;
+    display: inline-flex;
+    margin: auto;
+}
+.nav_right > a {
+    width: 120px;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: 1.1em;
+    font-family: "serif";
+    line-height: 60px;
+    vertical-align: middle;
+}
+.nav_right > a:hover {
+    color: rgb(254, 145, 38);
+}
+.nav_right > img {
+    height: 30px;
+    width: auto;
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+/*导航栏下面的元素*/
+.secondNav {
+    height: 120px;
+    width: 100%;
+    background: rgb(245, 245, 245);
+    position: relative;
+}
+.secondNav > h1 {
+    color: rgb(254, 145, 38);
+    position: absolute;
+    font-size: 2.5em;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.searchBox {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translate(0%, -50%);
+}
+.searchBox > input {
+    height: 40px;
+    font-size: 1.0em;
+    border: solid 1px #444;
+    padding: 0 5px 0 5px;
+    vertical-align: middle;
+}
+#searchWrapper {
+    background: rgb(245, 145, 38);
+    border-radius: 5px;
+    height: 45px;
+    width: 45px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+#searchWrapper:hover {
+    background: rgb(51, 51, 51);
+}
+#rearchButton {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 50%;
+}
+
+/*第三行布局*/
+.thirdNav {
+    width: 100%;
+    height: 50px;
+    background: rgb(245, 145, 38);
+}
+
+/*主页轮播图*/
+#turnImg {
+    width: 100%;
+    height: 250px;
+    position: relative;
+    -webkit-transition: all 1.5s;
+}
+#turnImg > p {
+    position: absolute;
+    text-align: center;
+    color: #eee;
+    font-size: 3.0em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*底部栏*/
+#bottomInfo {
+    position: relative;
+    bottom:0px;
+    width: 100%;
+    height: 60px;
+    background: rgb(42, 42, 42);
+}
+#bottomInfo > p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #eee;
+}
+/*图品预览*/
+#test-image-preview{
+    text-align: center;
+    border:1px solid #ccc;
+    width:80%;
+    height:200px;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+	font-family: 'Open Sans', sans-serif;
+}
+body a {
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	text-decoration: none;
+}
+body a:hover {
+	text-decoration: none;
+}
+body a:focus, a:hover {
+	text-decoration: none;
+}
+input[type="button"], input[type="submit"] {
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	font-family: 'Amita', cursive;
+}
+p {
+	margin: 0;
+	font-size:1em;
+	font-family: 'Ubuntu', sans-serif;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+label {
+	margin: 0;
+}
+a:focus, a:hover {
+	text-decoration: none;
+	outline: none;
+}
+/*-- //Reset-Code --*/
+/*-- banner --*/
+
+.agileinfo-dot{
+    background: url(../images/dott.png)repeat 0px 0px;
+    background-size: 2px;
+    -webkit-background-size: 2px;
+    -moz-background-size: 2px;
+    -o-background-size: 2px;
+    -ms-background-size: 2px;
+	min-height: 750px;
+}
+.col-md-6.w3-banner-grid-left {
+    width: 50%;
+    float: left;
+}
+.col-md-6.w3-banner-grid-right{
+    width: 50%;
+    float: left;
+}
+.w3-banner-img {
+    text-align: left;
+   
+}
+ul.address {
+    text-align: left;
+    margin-top: 1.5em;
+   
+    padding-top: 0.5em;
+    padding-left: 10%;
+}
+
+ul.address li ul.agileits-address-text li {
+    display: inline-block;
+    text-align: left;
+    font-size: 1.2em;
+    color:rgba(3, 0, 39, 0.76);
+    margin-top: 1em;
+    font-weight: 600;
+    font-family: 'Text Me One', sans-serif;
+}
+.container{
+    float:right;
+    border-left:1px dashed #000;
+    margin-right:5%;
+    padding-left:5%;
+}
+.w3-right-addres-1
+{
+    text-align: right;
+}
+ul.address li ul.agileits-address-text li:nth-child(1) {
+    width: 20%;
+}
+.w3-banner-grids {
+    padding: 6em 0 0 0;
+}
+.w3-banner-img img {
+    width: 133px;
+    height: 133px;
+    border-radius: 50%;
+}
+.w3-right-addres-1 li {
+    list-style-type: none;
+}
+.w3-banner-text p {
+    width: 50%;
+}
+.w3-banner-text a {
+    color: #ffc53e;
+    font-size: 1em;
+    line-height: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.w3-banner-text h3{
+    text-align: center;
+    color: rgba(21, 18, 180, 0.555);
+    font-size: 2em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing:1px;
+   font-family: 'Raleway', sans-serif;
+
+}
+.w3-banner-text h4{
+    text-align: left;
+    color:  darkblue;
+    font-size: 1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing:1px;
+    font-family: 'Raleway', sans-serif;
+
+}
+ul.agileits-address-text li a {
+    color:rgba(255, 255, 255, 0.76);
+}
+.w3-banner-img h3 {
+    color: darkblue;
+    font-size: 2.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+        letter-spacing:1px;
+   font-family: 'Raleway', sans-serif;
+}
+.w3-banner-img p {
+    color: #ffc53e;
+    font-size: 1em;
+    line-height: 1.5em;
+    text-transform: uppercase;
+	letter-spacing: 2px;
+}
+.w3-banner-grid-right h3 {
+  font-size: 3em;
+    color: rgba(0, 106, 155, 0.733);
+    letter-spacing: 2px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+.w3-banner-grid-right p {
+    color:#11ccecce;
+    font-size: 1em;
+    line-height: 1.8em;
+    letter-spacing: 1px;
+}
+
+.w3-banner-img {
+    border: 5px solid rgba(238, 238, 238, 0.53);
+    width: 80%;
+    height: auto;
+    padding: 63px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 5%;
+}
+

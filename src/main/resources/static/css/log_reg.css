@@ -1,0 +1,67 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: url(../img/loginBack1.jpg) no-repeat;
+	background-size: cover;
+}
+button {
+	outline: none;
+}
+.logoImg {
+	width: 200px;
+	height: auto;
+}
+.loginInfo {
+	height: 310px;
+	width: 350px;
+	top: 50%;
+	margin-top: -155px;
+	left: 50%;
+	margin-left: -175px;
+	position: absolute;
+	/*background: #fff;*/
+}
+.formItem {
+	border: solid 2px rgba(240, 240, 240, 0.5);
+	width: 100%;
+	height: 40px;
+	border-radius: 20px;
+	margin-bottom: 20px;
+}
+.inputFrame {
+	border: hidden;
+	background-color: transparent;
+	margin-left: 20px;
+	height: 40px;
+	width: 250px;
+	font-size: 1.1em;
+	display: inline;
+	position: absolute;
+	outline: none;
+}
+.normalBlock {
+	height: 40px;
+	width: 350px;
+
+}
+.normalBlock > button {
+	height: 40px;
+	width: 354px;
+	border-radius: 20px;
+	border: none;
+	font-size: 1.1em;
+	background-color: rgba(240, 240, 240, 0.5);
+	color: rgb(15, 15, 15);
+}
+.normalBlock > button:hover {
+	background-color: transparent;
+	border: solid 2px rgba(240, 240, 240, 0.5);
+	color: rgb(240, 240, 240);
+}
+.normalBlock > a {
+	font-size: 0.8em;
+	margin-left: 10px;
+	color: #222;
+}

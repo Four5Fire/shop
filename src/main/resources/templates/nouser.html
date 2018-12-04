@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="nav" th:fragment="nologin">
+    <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" onclick="window.location.href='http://127.0.0.1:7000/shop/index';"/>
+    <div class="nav_right">
+        <a href="http://127.0.0.1:7000/shop/login">Login</a>
+        <a href="http://127.0.0.1:7000/shop/registry">Register</a>
+    </div>
+</div>
+<div class="nav" th:fragment="user">
+    <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" onclick="window.location.href='http://127.0.0.1:7000/shop/index';"/>
+    <div class="nav_right">
+        <img th:src="@{/static/img/用户白底.png}" onmouseover="this.src = '/static/img/用户鼠标悬浮.png';" onmouseout="this.src = '/static/img/用户白底.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/userinfo';"/>
+        <img th:src="@{/static/img/购物车.png}" onmouseover="this.src = '/static/img/购物车鼠标悬浮.png';" onmouseout="this.src = '/static/img/购物车.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/cart';"/>
+        <a href="http://127.0.0.1:7000/shop/logout">Logout</a>
+    </div>
+</div>
+<div class="nav" th:fragment="shopUser">
+    <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" onclick="window.location.href='http://127.0.0.1:7000/shop/index';"/>
+    <div class="nav_right">
+        <img th:src="@{/static/img/订单.png}" onmouseover="this.src = '/static/img/订单鼠标悬浮.png';" onmouseout="this.src = '/static/img/订单.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/index';" />
+        <img th:src="@{/static/img/店铺.png}" onmouseover="this.src = '/static/img/店铺鼠标悬浮.png';" onmouseout="this.src = '/static/img/店铺.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/index';" />
+        <a href="http://127.0.0.1:7000/shop/logout">Logout</a>
+    </div>
+</div>
+<div th:fragment="search">
+    <h1>
+        SUPER MARKET
+    </h1>
+    <div class="searchBox">
+        <input type="text" placeholder="Search for a product..." />
+        <div id="searchWrapper">
+            <img th:src="@{/static/img/搜索.png}" id="rearchButton"/>
+        </div>
+    </div>
+</div>
+<div th:fragment="bottomInfo">
+    <a href="#">About us</a>
+    <p>
+        Copyright © 2018.DingDang shopping All rights reserved.
+    </p>
+</div>
+</body>
+</html>

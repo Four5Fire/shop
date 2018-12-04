@@ -1,0 +1,482 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>index</title>
+<link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" type="text/css">
+	<script>
+		function orangeCart(elem) {
+			elem.src = '/static/img/购物车鼠标悬浮.png';
+		}
+		function whiteCart(elem) {
+			elem.src = '/static/img/购物车.png';
+		}
+		//展示购物车内的商品
+		function showSelected() {
+			
+		}
+	</script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		/*导航栏*/
+		.nav {
+			background: rgb(51, 51, 51);
+			height: 60px;
+		}
+		.nav_right {
+			height: 60px;
+			position: absolute;
+			left: 70%;
+			display: inline-flex;
+			margin: auto;
+		}
+		.nav_right > a {
+			width: 120px;
+			text-decoration: none;
+			text-align: center;
+			color: #fff;
+			font-size: 1.1em;
+			font-family: "serif";
+			line-height: 60px;
+			vertical-align: middle;
+		}
+		.nav_right > a:hover {
+			color: rgb(254, 145, 38);
+		}
+		.nav_right > img {
+			height: 30px;
+			width: auto;
+			margin-top: 15px;
+			margin-left: 30px;
+		}
+		
+		/*导航栏下面的元素*/
+		.secondNav {
+			height: 120px;
+			width: 100%;
+			background: rgb(245, 245, 245);
+			position: relative;
+		}
+		.secondNav > h1 {
+			color: rgb(254, 145, 38);
+			position: absolute;
+			font-size: 2.5em;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		.searchBox {
+			position: absolute;
+			right: 10%;
+			top: 50%;
+			transform: translate(0%, -50%);
+		}
+		.searchBox > input {
+			height: 40px;
+			font-size: 1.0em;
+			border: solid 1px #444;
+			padding: 0 5px 0 5px;
+			vertical-align: middle;
+		}
+		#searchWrapper {
+			background: rgb(245, 145, 38);
+			border-radius: 5px;
+			height: 45px;
+			width: 45px;
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		#searchWrapper:hover {
+			background: rgb(51, 51, 51);
+		}
+		#rearchButton {
+			position: absolute;
+			transform: translate(-50%, -50%);
+			width: 30px;
+			height: 30px;
+			top: 50%;
+			left: 50%;
+		}
+		
+		/*第三行布局*/
+		.thirdNav {
+			width: 100%;
+			height: 50px;
+			background: rgb(245, 145, 38);
+		}
+
+		.list ul{
+			text-align: center;
+		}
+
+		.list ul li{
+			display: inline-block;
+			margin-top: 15px;
+			margin-left: 50px;
+		}
+
+		.list ul li a{
+			color: white;
+			text-decoration: none;
+			font-size: 17px;
+			font-weight: bold;
+		}
+
+		.list ul li a:hover{
+			font-style: italic;
+		}
+
+		.t1{
+			padding: 5em 0;
+		}
+
+		.t2 {
+			padding-right: 15%;
+			padding-left: 15%;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.t3{
+			position: relative;
+			min-height: 1px;
+			padding-right: 15px;
+			padding-left: 15px;
+			width: 100%;
+			float: none;
+		}
+
+		.t4{
+			margin-top: 40px;
+		}
+
+		.one{
+			float: left;
+			width: 30%;
+			position: relative;
+		 	min-height: 1px;
+		 	padding-right: 15px;
+		 	padding-left: 15px;
+		}
+
+		.two {
+		    border: 1px solid #c0bebe;
+		}
+
+		.two figure {
+			position: relative;
+		}
+		.two figure::before {
+			position: absolute;
+			top: 0;
+			left: 0%;
+			z-index: 2;
+			display: block;
+			content: '';
+			width: 50%;
+			height: 100%;
+			background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+			background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+			-webkit-transform: skewX(-25deg);
+			transform: skewX(-25deg);
+		}
+		.two figure:hover::before{
+			-webkit-animation: shine .75s;
+			animation: shine .75s;
+		}
+
+		.three{
+			position: relative;
+		    display: block;
+		    background: #FFFFFF;
+		    padding: .5em;
+		}
+
+		.three:hover .six input.button,.six input.button:hover{
+		    background: #fe9126;
+		}
+
+		.four{
+			transition: .5s ease-in;
+			-webkit-transition: .5s ease-in;
+			-moz-transition: .5s ease-in;
+			-o-transition: .5s ease-in;
+			-ms-transition: .5s ease-in;
+			padding: 1em;
+		}
+
+		.four img{
+			margin: 0 auto;
+			max-width: 100% ! important ;
+		}
+
+		.four p{
+			color:#212121;
+			margin:1.5em 0 1em;
+			line-height:1.5em;
+			text-transform:capitalize;
+			font-size:14px;
+			text-align: center;
+		}
+		.four h4{
+			font-weight:600;
+			font-size:1em;
+			color:#212121;
+			text-align: center;
+		}
+		.four h4 span{
+			font-weight:300;
+			text-decoration:line-through;
+			padding-left:1em;
+		}
+
+		.five a{
+			display: block;
+		    text-align: center;
+		}
+
+		.six {
+		    text-align: center;
+			margin: 1.5em auto 1em;
+		    width:77%;
+		}
+
+		.six input.button {
+		    font-size: 14px;
+		    color: #fff;
+		    background: #3399cc;
+		    text-decoration: none;
+		    position: relative;
+		    border: none;
+		    border-radius: 0;
+		    width: 100%;
+		    text-transform: uppercase;
+		    padding: .5em 0;
+		    outline: none;
+		}
+
+		.numbering{
+			text-align:right;
+		}
+
+		.pagination {
+		  display: inline-block;
+		  padding-left: 0;
+		  margin: 20px 0;
+		  border-radius: 4px;
+		}
+		.pagination > li {
+		  display: inline;
+		}
+		.pagination > li > a,
+		.pagination > li > span {
+		  position: relative;
+		  float: left;
+		  padding: 6px 12px;
+		  margin-left: -1px;
+		  line-height: 1.42857143;
+		  color: #337ab7;
+		  text-decoration: none;
+		  background-color: #fff;
+		  border: 1px solid #ddd;
+		}
+		.pagination > li:first-child > a,
+		.pagination > li:first-child > span {
+		  margin-left: 0;
+		  border-top-left-radius: 4px;
+		  border-bottom-left-radius: 4px;
+		}
+		.pagination > li:last-child > a,
+		.pagination > li:last-child > span {
+		  border-top-right-radius: 4px;
+		  border-bottom-right-radius: 4px;
+		}
+		.pagination > li > a:hover,
+		.pagination > li > span:hover,
+		.pagination > li > a:focus,
+		.pagination > li > span:focus {
+		  color: #23527c;
+		  background-color: #fe9126;
+		  border-color: #ddd;
+		}
+		.pagination > .active > a,
+		.pagination > .active > span,
+		.pagination > .active > a:hover,
+		.pagination > .active > span:hover,
+		.pagination > .active > a:focus,
+		.pagination > .active > span:focus {
+		  z-index: 2;
+		  color: #fff;
+		  cursor: default;
+		  background-color: #337ab7;
+		  border-color: #337ab7;
+		}
+		.pagination > .disabled > span,
+		.pagination > .disabled > span:hover,
+		.pagination > .disabled > span:focus,
+		.pagination > .disabled > a,
+		.pagination > .disabled > a:hover,
+		.pagination > .disabled > a:focus {
+		  color: #777;
+		  cursor: not-allowed;
+		  background-color: #fff;
+		  border-color: #ddd;
+		}
+		.pagination-lg > li > a,
+		.pagination-lg > li > span {
+		  padding: 10px 16px;
+		  font-size: 18px;
+		}
+		.pagination-lg > li:first-child > a,
+		.pagination-lg > li:first-child > span {
+		  border-top-left-radius: 6px;
+		  border-bottom-left-radius: 6px;
+		}
+		.pagination-lg > li:last-child > a,
+		.pagination-lg > li:last-child > span {
+		  border-top-right-radius: 6px;
+		  border-bottom-right-radius: 6px;
+		}
+		.pagination-sm > li > a,
+		.pagination-sm > li > span {
+		  padding: 5px 10px;
+		  font-size: 12px;
+		}
+		.pagination-sm > li:first-child > a,
+		.pagination-sm > li:first-child > span {
+		  border-top-left-radius: 3px;
+		  border-bottom-left-radius: 3px;
+		}
+		.pagination-sm > li:last-child > a,
+		.pagination-sm > li:last-child > span {
+		  border-top-right-radius: 3px;
+		  border-bottom-right-radius: 3px;
+		}
+
+		.pagination > li > a{
+			color:#212121;
+		}
+
+		ul.paging {
+	    	margin: 2em auto 0;
+		}
+
+		.paging > .active > a,.paging > .active > a:hover {
+		    background-color:#ffc229;
+		    border-color:#EDB62B;
+		}
+		.sr-only {
+		  position: absolute;
+		  width: 1px;
+		  height: 1px;
+		  padding: 0;
+		  margin: -1px;
+		  overflow: hidden;
+		  clip: rect(0, 0, 0, 0);
+		  border: 0;
+		}
+
+	</style>
+</head>
+
+<body onResize="adaptBottom();">
+<div class="nav" th:include="nouser::${user}">
+</div>
+	<div class="secondNav">
+		<h1>
+			SUPER MARKET
+		</h1>
+		<div class="searchBox">
+			<input type="text" placeholder="Search for a product..." />
+			<div id="searchWrapper">
+				<img th:src="@{/static/img/搜索.png}" id="rearchButton"/>
+			</div>
+		</div>
+	</div>
+	<div class="thirdNav">
+		<div class="list">
+
+
+			<ul>
+				<li th:each="it : ${itemList}" th:id="${it.itemId}"><a href="#" th:text="${it.itemName}"></a></li>
+			</ul>
+
+		</div>
+	</div>
+
+	<div class="t1">
+		<div class="t2">
+			<div class="t3">
+				
+
+				<div class="t4" th:each="product:${productList}">
+					<div class="one" >
+						<div class="two">
+							<div class="three">
+								<div class=four>
+									<figure>
+										<div class="five">
+											<a th:href="${productsApi}+${product.getProductId()}"><img title=" " alt=" " th:src="@{${product.getPic()}}"></a>
+											<p th:text="${product.getProductName()}"></p>
+											<h4 th:text="${product.getPriceOriginal()}"></h4>
+										</div>
+										<div class="six">
+											<input type="submit" name="submit" value="Add to cart" class="button">
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<nav class="numbering">
+					<ul class="pagination paging">
+						<li>
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<!--li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li-->
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li>
+							<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+
+
+			</div>
+		</div>
+	</div>
+<div id="bottomInfo" th:include="nouser::${bottomInfo}">
+
+</div>
+
+</body>
+
+	<script>
+
+        window.onload=function adaptBottom() {
+            let bottomElement = document.getElementById('bottomInfo');
+            if(document.documentElement.offsetHeight - 60 > document.documentElement.clientHeight) {	//底部栏脱离底部
+                bottomElement.style.position = 'relative';
+            }
+            else {
+                bottomElement.style.position = 'absolute';
+                bottomElement.style.bottom = '0px';
+            }
+//			console.log('offsetHeight: ' + document.documentElement.offsetHeight + ' clientHeight: ' + document.documentElement.clientHeight);
+        }
+	</script>
+</html>

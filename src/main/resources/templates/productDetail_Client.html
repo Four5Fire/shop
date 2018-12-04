@@ -1,0 +1,293 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>index</title>
+	<script>
+        var isLogin = 1;
+        var userCategory = 0;	//0 represents buyer, 1 represents seller
+        function orangeIcon(elem) {
+            if(isLogin) {
+                if(!userCategory) {
+                    elem.src = '/static/img/购物车鼠标悬浮.png';
+                }
+                else {
+                    elem.src = '/static/img/店铺鼠标悬浮.png';
+                }
+            }
+        }
+        function whiteIcon(elem) {
+            if(isLogin) {
+                if(!userCategory) {
+                    elem.src = '/static/img/购物车.png';
+                }
+                else {
+                    elem.src = '/static/img/店铺.png';
+                }
+            }
+        }
+
+        //主页轮播图
+        function carouselMap() {
+            let elem = document.getElementById('turnImg');
+            let order = 2;
+            elem.style.background = "url('/static/img/back1.jpg') no-repeat";
+            elem.style.backgroundSize = 'cover';
+            setInterval(function() {
+                //elem.style.backgroundImage = "url('img/back'" + order + "'.jpg')";
+                elem.style.backgroundImage = "url('/static/img/back" + order + ".jpg')";
+                order++;
+                if(order == 4) {
+                    order = 1;
+                }
+            }, 5000);
+        }
+	</script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		/*导航栏*/
+		.nav {
+			background: rgb(51, 51, 51);
+			height: 60px;
+		}
+		.nav_right {
+			height: 60px;
+			position: absolute;
+			left: 70%;
+			display: inline-flex;
+			margin: auto;
+		}
+		.nav_right > a {
+			width: 120px;
+			text-decoration: none;
+			text-align: center;
+			color: #fff;
+			font-size: 1.1em;
+			font-family: "serif";
+			line-height: 60px;
+			vertical-align: middle;
+		}
+		.nav_right > a:hover {
+			color: rgb(254, 145, 38);
+		}
+		.nav_right > img {
+			height: 30px;
+			width: auto;
+			margin-top: 15px;
+			margin-left: 30px;
+		}
+		
+		/*导航栏下面的元素*/
+		.secondNav {
+			height: 120px;
+			width: 100%;
+			background: rgb(245, 245, 245);
+			position: relative;
+		}
+		.secondNav > h1 {
+			color: rgb(254, 145, 38);
+			position: absolute;
+			font-size: 2.5em;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		.searchBox {
+			position: absolute;
+			right: 10%;
+			top: 50%;
+			transform: translate(0%, -50%);
+		}
+		.searchBox > input {
+			height: 40px;
+			font-size: 1.0em;
+			border: solid 1px #444;
+			padding: 0 5px 0 5px;
+			vertical-align: middle;
+		}
+		#searchWrapper {
+			background: rgb(245, 145, 38);
+			border-radius: 5px;
+			height: 45px;
+			width: 45px;
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		#searchWrapper:hover {
+			background: rgb(51, 51, 51);
+		}
+		#rearchButton {
+			position: absolute;
+			transform: translate(-50%, -50%);
+			width: 30px;
+			height: 30px;
+			top: 50%;
+			left: 50%;
+		}
+		
+		/*第三行布局*/
+		.thirdNav {
+			width: 100%;
+			height: 50px;
+			background: rgb(245, 145, 38);
+		}
+		
+		/*主页轮播图*/
+		#turnImg {
+			width: 100%;
+			height: 500px;
+			position: relative;
+			-webkit-transition: all 1.5s;
+		}
+		#turnImg > p {
+			position: absolute;
+			text-align: center;
+			color: #eee;
+			font-size: 3.0em;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		
+		/*底部栏*/
+		#bottomInfo {
+			position: relative;
+			width: 100%;
+			height: 60px;
+			background: rgb(42, 42, 42);
+		}
+		#bottomInfo > p {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: #eee;
+		}
+	</style>
+	
+	<!-- 新添加的css -->
+	<link th:href="@{/static/css/productDetail_Client.css}" rel="stylesheet" type="text/css" />
+	
+
+	
+</head>
+
+<body onload="carouselMap();">
+<div class="nav" th:fragment="user_refresh">
+	<img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" />
+	<!--/*@thymesVar id="user" type="templates"*/-->
+	<div class="nav_right" th:include="nouser::${user}">
+
+	</div>
+</div>
+	<div class="secondNav">
+		<h1>
+			SUPER MARKET
+		</h1>
+		<div class="searchBox">
+			<input type="text" placeholder="Search for a product..." />
+			<div id="searchWrapper">
+				<img th:src="@{/static/img/搜索.png}" id="rearchButton"/>
+			</div>
+		</div>
+	</div>
+	<div class="thirdNav">
+		
+	</div>
+	
+	<!-- 主体部分 -->
+	
+	<div class = "container">
+	
+		<div class="col-md-4 agileinfo_single_left" >
+			
+			<img  th:src="@{${productPic}}" class ="img-responsive"> <!-- 在此动态加载商品图片### -->
+		</div>
+		
+		<div class="col-md-8 agileinfo_single_right">
+			<h2 th:text="${productName}">商品名称*</h2> <!-- 在此动态获取商品名称### -->
+			
+			<div class="w3agile_description"><!-- 在此动态获取商品信息 带*为网页加载时替换的内容### -->
+				<h4>商品简介</h4>
+				<p th:text="${productIntro}">商品简介*</p>
+
+				<h4>商品种类</h4>
+				<p th:text="${item}">商品种类*</p>
+
+				<h4>品牌</h4>
+				<p th:text="${brand}">品牌*</p>
+				
+				<h4>销量</h4>
+				<p th:text="${productCount}">销量*</p>
+				
+			</div>
+
+			
+			<div class="snipcart-item block">
+				<div class="snipcart-thumb agileinfo_single_right_snipcart">
+					<h4 class="m-sing" th:text="${productPrice}">商品价格*</h4> <!-- 在此动态获取商品价格 ### -->
+				</div>
+				<!-- 添加购物车按钮 -->
+				<div class="snipcart-details agileinfo_single_right_details">
+					<form action="#" method="post">
+						<input type="submit" name="submit" value="添加到购物车" class="button">
+						
+					</form>
+				</div>
+			</div>
+			
+	
+			<div class="w3agile_description">
+				<h4>历史价格</h4>
+
+				<!-- 折线图 -->		
+				<canvas id="canvas" height="300" width="600"></canvas>
+		
+				<script th:src="@{/static/js/Chart.js}"></script>
+				<script>
+				//var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+				var lineChartData = {
+					labels : ["January","February","March","April","May","June","July"],//横坐标修改 ###
+					datasets : [
+						{
+							label: "My Second dataset",
+							fillColor : "rgba(151,187,205,0.2)",
+							strokeColor : "rgba(151,187,205,1)",
+							pointColor : "rgba(151,187,205,1)",
+							pointStrokeColor : "#fff",
+							pointHighlightFill : "#fff",
+							pointHighlightStroke : "rgba(151,187,205,1)",
+							//在此填充价格数据 ###
+							data : [20,30]
+						}
+					]
+				};
+
+				window.onload = function(){
+					var ctx = document.getElementById("canvas").getContext("2d");
+					window.myLine = new Chart(ctx).Line(lineChartData, {
+						responsive: true
+					});
+				}
+
+				</script>
+
+			</div>		
+		</div>
+		
+	</div>
+
+<div id="bottomInfo">
+	<a href="#">About us</a>
+	<p>
+		Copyright © 2018.DingDang shopping All rights reserved.
+	</p>
+</div>
+
+	
+</body>
+</html>

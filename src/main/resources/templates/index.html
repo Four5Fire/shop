@@ -1,0 +1,80 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>index</title>
+	<script>
+
+        //主页轮播图
+        function carouselMap() {
+            let elem = document.getElementById('turnImg');
+            let order = 2;
+            elem.style.background = "url('/static/img/back1.jpg') no-repeat";
+            elem.style.backgroundSize = 'cover';
+            setInterval(function() {
+                //elem.style.backgroundImage = "url('img/back'" + order + "'.jpg')";
+                elem.style.backgroundImage = "url('/static/img/back" + order + ".jpg')";
+                order++;
+                if(order == 4) {
+                    order = 1;
+                }
+            }, 5000);
+        }
+
+        //用户头像跳转
+
+	</script>
+	<link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" type="text/css">
+	<script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		/*主页轮播图*/
+		#turnImg {
+			width: 100%;
+			height: 500px;
+			position: relative;
+			-webkit-transition: all 1.5s;
+		}
+		#turnImg > p {
+			position: absolute;
+			text-align: center;
+			color: #eee;
+			font-size: 3.0em;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
+</head>
+
+<body onload="carouselMap();">
+<div class="nav" th:include="nouser::${user}">
+</div>
+<div class="secondNav" th:include="nouser::${search}">
+
+</div>
+<div class="thirdNav">
+	<div class="list">
+
+
+		<ul>
+			<li th:each="it : ${itemList}" th:id="${it.itemId}"><a th:href="${productsApi}+${it.itemId}" th:text="${it.itemName}"></a></li>
+		</ul>
+
+	</div>
+</div>
+<div id="turnImg">
+	<p>
+		DingDang shopping<br/>
+		Buy it is to earn
+	</p>
+</div>
+<div id="bottomInfo" th:include="nouser::${bottomInfo}">
+
+</div>
+</body>
+</html>

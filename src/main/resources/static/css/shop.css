@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/*导航栏*/
+.nav {
+    background: rgb(51, 51, 51);
+    height: 60px;
+}
+.nav_right {
+    height: 60px;
+    position: absolute;
+    left: 70%;
+    display: inline-flex;
+    margin: auto;
+}
+.nav_right > a {
+    width: 120px;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: 1.1em;
+    font-family: "serif";
+    line-height: 60px;
+    vertical-align: middle;
+}
+.nav_right > a:hover {
+    color: rgb(254, 145, 38);
+}
+.nav_right > img {
+    height: 30px;
+    width: auto;
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+/*导航栏下面的元素*/
+.secondNav {
+    height: 120px;
+    width: 100%;
+    background: rgb(245, 245, 245);
+    position: relative;
+}
+.secondNav > h1 {
+    color: rgb(254, 145, 38);
+    position: absolute;
+    font-size: 2.5em;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.searchBox {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translate(0%, -50%);
+}
+.searchBox > input {
+    height: 40px;
+    font-size: 1.0em;
+    border: solid 1px #444;
+    padding: 0 5px 0 5px;
+    vertical-align: middle;
+}
+#searchWrapper {
+    background: rgb(245, 145, 38);
+    border-radius: 5px;
+    height: 45px;
+    width: 45px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+#searchWrapper:hover {
+    background: rgb(51, 51, 51);
+}
+#rearchButton {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 50%;
+}
+
+/*第三行布局*/
+.thirdNav {
+    width: 100%;
+    height: 50px;
+    background: rgb(245, 145, 38);
+}
+
+/*主页轮播图*/
+#turnImg {
+    width: 100%;
+    height: 250px;
+    position: relative;
+    -webkit-transition: all 1.5s;
+}
+#turnImg > p {
+    position: absolute;
+    text-align: center;
+    color: #eee;
+    font-size: 3.0em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*底部栏*/
+#bottomInfo {
+    position: relative;
+    bottom:0px;
+    width: 100%;
+    height: 60px;
+    background: rgb(42, 42, 42);
+}
+#bottomInfo > p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #eee;
+}
+/*提交表单*/
+/* Basic Grey */
+.basic-grey {
+    margin-top:5%;
+    margin-bottom: 5%;
+    margin-right: AUTO;
+    MARGIN-LEFT:AUTO;
+    max-width: 550px;
+    background: #F7F7F7;
+    padding: 25px 15px 25px 10px;
+    font: 12px Georgia, "Times New Roman", Times, serif;
+    color: #888;
+    text-shadow: 1px 1px 1px #FFF;
+    border:1px solid #E4E4E4;
+    }
+    .basic-grey h1 {
+    font-size: 25px;
+    padding: 0px 0px 10px 40px;
+    display: block;
+    border-bottom:1px solid #E4E4E4;
+    margin: -10px -15px 30px -10px;;
+    color: #888;
+    }
+    .basic-grey h1>span {
+    display: block;
+    font-size: 11px;
+    }
+    .basic-grey label {
+    display: block;
+    margin: 0px;
+    }
+    .basic-grey label>span {
+    float: left;
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+    margin-top: 10px;
+    color: #888;
+    }
+    .basic-grey input[type="text"], .basic-grey input[type="email"], .basic-grey textarea, .basic-grey select {
+    border: 1px solid #DADADA;
+    color: #888;
+    height: 30px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 70%;
+    font-size: 12px;
+    line-height:15px;
+    box-shadow: inset 0px 1px 4px #ECECEC;
+    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+    }
+    .basic-grey input[type="file"] {
+    height: 30px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 70%;
+    font-size: 12px;
+    line-height:15px;
+    box-shadow: inset 0px 1px 4px #ECECEC;
+    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+    }
+    .basic-grey textarea{
+    padding: 5px 3px 3px 5px;
+    }
+    .basic-grey select {
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width: 70%;
+    height: 35px;
+    line-height: 25px;
+    }
+    .basic-grey textarea{
+    height:100px;
+    }
+    .basic-grey .button {
+    background: #E27575;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    box-shadow: 1px 1px 5px #B6B6B6;
+    border-radius: 3px;
+    text-shadow: 1px 1px 1px #9E3F3F;
+    cursor: pointer;
+    }
+    .basic-grey .button:hover {
+    background: #CF7A7A
+    }
+/*图品预览*/
+#test-image-preview{
+    text-align: center;
+    border:1px solid #ccc;
+    width:80%;
+    height:200px;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}

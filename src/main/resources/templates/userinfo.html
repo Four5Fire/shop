@@ -1,0 +1,85 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>USER INFO</title>
+	<link rel="stylesheet" th:href="@{/static/css/userinfo.css}" />
+	<script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+</head>
+
+<body>
+<div class="nav" th:include="nouser::${user}">
+</div>
+	<div class="secondNav">
+		<div class="searchBox">
+			<input type="text" placeholder="Search for a product..." />
+			<div id="searchWrapper">
+				<img th:src="@{/static/img/搜索.png}" id="rearchButton"/>
+			</div>
+		</div>
+	</div>
+	<div class="thirdNav">
+		
+	</div>
+		<div class="w3-banner-img">
+			<div class='container'>
+				<!--/*@thymesVar id="pic" type="templates"*/-->
+				<img id="userPic" th:src="@{${pic}}" alt="img">
+					<h3 class="test">Chris Adam</h3>
+					<p class="test" >sir</p>
+				<div class="userinfo w3-banner-grid-right">
+					<div class="w3-banner-text">
+						<h4>您的一次购买，就是我们的一次成长</h4>
+						<a href='#'  >购买历史</a>
+						<a href='http://127.0.0.1:7000/shop/userUpdateIndex'  >个人资料修改</a>
+					</div>
+				</div>
+			</div>
+		<div class=" w3-right-addres-1">
+		<ul class="address">
+			<li>
+				<ul class="agileits-address-text ">
+					<li class="agile-it-adress-left"><b>您来的时间</b></li>
+					<!--/*@thymesVar id="regisDate" type="templates"*/-->
+					<li th:text="${regisDate}"></li>
+				</ul>
+			</li>
+			<li>
+				<ul class="agileits-address-text">
+					<li class="agile-it-adress-left"><b>PHONE</b></li>
+					<!--/*@thymesVar id="tele" type="templates"*/-->
+					<li th:text="${tele}"></li>
+				</ul>
+			</li>
+			<li>
+				<ul class="agileits-address-text">
+					<li class="agile-it-adress-left"><b>ADDRESS</b></li>
+					<!--/*@thymesVar id="address" type="templates"*/-->
+					<li th:text="${address}"></li>
+				</ul>
+			</li>
+			<li>
+				<ul class="agileits-address-text">
+					<li class="agile-it-adress-left"><b>积分</b></li>
+					<!--/*@thymesVar id="score" type="templates"*/-->
+					<li th:text="${score}"></a></li>
+				</ul>
+			</li>
+			<li>
+				<ul class="agileits-address-text">
+					<li class="agile-it-adress-left"><b>等级</b></li>
+					<!--/*@thymesVar id="level" type="templates"*/-->
+					<li th:text="${level}"></a></li>
+				</ul>
+			</li>
+		</ul> 
+
+	</div>
+</div>
+
+
+<div id="bottomInfo" th:include="nouser::${bottomInfo}">
+
+</div>
+</body>
+</html>

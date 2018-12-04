@@ -1,0 +1,115 @@
+<!doctype html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Userupdate</title>
+	<link rel="stylesheet" th:href="@{/static/css/userupdate.css}" />
+    <link rel="stylesheet" th:href="@{/static/css/fonts.css}"/>
+    <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+	</head>
+
+<body>
+<div class="nav" th:include="nouser::${user}">
+</div>
+	<div class="secondNav">
+		<h1>
+			wallmart
+		</h1>
+		<div class="searchBox">
+			<input type="text" placeholder="Search for a product..." />
+			<div id="searchWrapper">
+				<img th:src="@{/static/img/搜索.png}" id="rearchButton"/>
+			</div>
+		</div>
+	</div>
+	<div class="thirdNav">
+		
+	</div>
+
+
+    <form id="userForm" enctype="multipart/form-data" class="basic-grey">
+    <h1>Update Your Info
+    <span>请填写你要修改的区域</span>
+    </h1>
+    <label>
+        <span>Username</span>
+        <!--/*@thymesVar id="username" type="templates"*/-->
+        <input type="text" name="name" th:value="${username}" />
+    </label>
+
+    <label>
+        <span>Tele</span>
+        <!--/*@thymesVar id="tele" type="templates"*/-->
+        <input id="Tele" type="text" name="Tele" disabled="disabled" th:value="${tele}" />
+    </label>
+
+    <label>
+    <span>Gender</span><select name="selection">
+    <option value="1">男</option>
+    <option value="2">女</option>
+    </select>
+    </label>
+
+   
+
+    <label>
+        <span>password</span>
+        <!--/*@thymesVar id="userPwd" type="templates"*/-->
+        <input id="password" type="password" name="password" th:value="${userPwd}"  />
+    </label>
+
+    <label>
+        <span>确认password</span>
+        <!--/*@thymesVar id="userPwd" type="templates"*/-->
+        <input id="passwordConfirm" type="password" name="password" th:value="${userPwd}" />
+    </label>
+
+    <label>
+        <span>address</span>
+        <!--/*@thymesVar id="address" type="templates"*/-->
+        <input id="address" type="text" name="address" placeholder="请填入地址" th:value="${address}"/>
+    </label>
+
+
+    <label>
+        <span>上传用户图片:</span>
+        <input id="fileId" type="file" name="file" >
+    </label>
+
+    <span>&nbsp;</span>
+    <input type="button" class="button" value="Send" onclick="submitUserInfoUpdate()"/>
+    </label>
+    </form>
+
+
+<div id="bottomInfo" th:include="nouser::${bottomInfo}">
+
+</div>
+<script>
+    function submitUserInfoUpdate() {
+        var formData = new FormData(document.getElementById("userForm"));
+        formData.append("fileName",document.getElementById("fileId").files[0].name);
+        console.log(formData);
+        $.ajax({
+            url : "http://127.0.0.1:7000/shop/userUpdate",
+            type : 'POST',
+            data : formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            async: false,
+
+            success: function (data) {
+                alert("信息更新成功");
+                console.log("成功");
+
+            },
+            error: function (data) {
+                alert("信息更新失败");
+                console.log("失败");
+            }
+        });
+    }
+</script>
+</body>
+</html>
