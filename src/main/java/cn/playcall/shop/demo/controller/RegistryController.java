@@ -87,6 +87,7 @@ public class RegistryController {
 
     @RequestMapping(value = "/registry")
     public String registry(){
+
         return "registry";
     }
 

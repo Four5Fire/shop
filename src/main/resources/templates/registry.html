@@ -24,7 +24,7 @@
 	<form class="loginInfo">
 		<div class="formItem">
 			<img th:src="@{/static/img/用户.png}" style="width: 30px; height: 30px; margin-top: 5px; margin-left: 20px; display: inline;" />
-			<input id="user_name" class="inputFrame" placeholder="用户名" type="text" />
+			<input id="user_name" class="inputFrame" placeholder="店铺名" type="text" />
 		</div>
 		<div class="formItem">
 			<img th:src="@{/static/img/密码.png}" style="width: 30px; height: 30px; margin-top: 5px; margin-left: 20px; display: inline;" />
@@ -39,8 +39,8 @@
 			<input id="tele" class="inputFrame" placeholder="手机号" type="text"/>
 		</div>
 		<div class="normalBlock">
-			<input   class='singlecheck' type="radio"   value="1"    name='用户类型'   checked="checked"/>普通用户
-			<input   class='singlecheck' type="radio"   value="2"    name='用户类型'   checked="checked"/>商家
+			<input   class='singlecheck' type="radio"   value="1"    name='用户类型'   checked="checked" onchange="changeUserType(1)"/>普通用户
+			<input   class='singlecheck' type="radio"   value="2"    name='用户类型'   checked="checked" onchange="changeUserType(2)"/>商家
 		</div>
 		<div class="normalBlock">
 			<button onclick="reg_check()" type="button">注册</button>

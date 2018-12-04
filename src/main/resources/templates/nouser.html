@@ -20,11 +20,11 @@
         <a href="http://127.0.0.1:7000/shop/logout">Logout</a>
     </div>
 </div>
-<div class="nav" th:fragment="shopUser">
+<div th:fragment="shopUser">
     <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" onclick="window.location.href='http://127.0.0.1:7000/shop/index';"/>
     <div class="nav_right">
         <img th:src="@{/static/img/订单.png}" onmouseover="this.src = '/static/img/订单鼠标悬浮.png';" onmouseout="this.src = '/static/img/订单.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/index';" />
-        <img th:src="@{/static/img/店铺.png}" onmouseover="this.src = '/static/img/店铺鼠标悬浮.png';" onmouseout="this.src = '/static/img/店铺.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/index';" />
+        <img th:src="@{/static/img/店铺.png}" onmouseover="this.src = '/static/img/店铺鼠标悬浮.png';" onmouseout="this.src = '/static/img/店铺.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/store';" />
         <a href="http://127.0.0.1:7000/shop/logout">Logout</a>
     </div>
 </div>
@@ -44,6 +44,42 @@
     <p>
         Copyright © 2018.DingDang shopping All rights reserved.
     </p>
+</div>
+
+<div class="list" th:fragment="ulList">
+
+
+    <ul>
+        <li th:each="item : ${itemList}" th:id="${item.getItemId()}"><a th:href="${productsApi}+${item.itemId}" th:text="${item.itemName}"></a></li>
+    </ul>
+
+</div>
+
+<div th:fragment="store">
+    <div class="t2">
+        <div class="t3">
+            <div class="t4" th:each="product:${productList}">
+                <div class="one" >
+                    <div class="two">
+                        <div class="three">
+                            <div class=four>
+                                <figure>
+                                    <div class="five">
+                                        <a th:href="${productsApi}+${product.getProductId()}"><img title=" " alt=" " th:src="@{${product.getPic()}}"></a>
+                                        <p th:text="${product.getProductName()}"></p>
+                                        <h4 th:text="${product.getPriceOriginal()}" th:if="${#lists.isEmpty(product.getPriceOriginal())}"></h4>
+                                    </div>
+                                    <div class="six">
+                                        <input th:id="${product.getProductId()}" type="button" name="submit" th:value="${addCart}" class="button" onclick="addCart(this.id)"/>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

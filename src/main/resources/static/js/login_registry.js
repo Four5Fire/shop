@@ -101,3 +101,11 @@ function reg_success() {
     }, 1000);
     document.body.appendChild(msg);
 }
+
+function changeUserType(type) {
+    if (type == 1){
+        document.getElementById("user_name").setAttribute("placeholder","用户名");
+    } else {
+        document.getElementById("user_name").setAttribute("placeholder","店铺名");
+    }
+}

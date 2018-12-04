@@ -37,6 +37,8 @@ public class ProductsItem {
         List<Product> productList = productDao.findAllByItemId(Integer.parseInt(itemId));
         int productCount = productList.size();
         model.addAttribute("productList",productList);
+        model.addAttribute("store","store");
+        model.addAttribute("addCart","添加至购物车");
         model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productDetail/");
         return "productsItem";
 

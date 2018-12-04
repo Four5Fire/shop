@@ -120,6 +120,7 @@
 
 		.t1{
 			padding: 5em 0;
+			margin-bottom: 85%;
 		}
 
 		.t2 {
@@ -429,33 +430,8 @@
 		</div>
 	</div>
 
-	<div class="t1">
-		<div class="t2">
-			<div class="t3">
-				
+	<div class="t1" th:include="nouser::${store}">
 
-				<div class="t4" th:each="product:${productList}">
-					<div class="one" >
-						<div class="two">
-							<div class="three">
-								<div class=four>
-									<figure>
-										<div class="five">
-											<a th:href="${productsApi}+${product.getProductId()}"><img title=" " alt=" " th:src="@{${product.getPic()}}"></a>
-											<p th:text="${product.getProductName()}"></p>
-											<h4 th:text="${product.getPriceOriginal()}"></h4>
-										</div>
-										<div class="six">
-											<input th:id="${product.getProductId()}" type="button" name="submit" value="Add to cart" class="button" onclick="addCart(this.id)"/>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 <div id="bottomInfo" th:include="nouser::${bottomInfo}">
 

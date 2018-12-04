@@ -58,12 +58,7 @@
 
 </div>
 <div class="thirdNav">
-	<div class="list">
-
-
-		<ul>
-			<li th:each="it : ${itemList}" th:id="${it.itemId}"><a th:href="${productsApi}+${it.itemId}" th:text="${it.itemName}"></a></li>
-		</ul>
+	<div class="list" th:include="nouser::${ulList}">
 
 	</div>
 </div>

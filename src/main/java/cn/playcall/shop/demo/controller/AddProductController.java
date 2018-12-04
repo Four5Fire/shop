@@ -1,6 +1,8 @@
 package cn.playcall.shop.demo.controller;
 
+import cn.playcall.shop.demo.dao.ItemDao;
 import cn.playcall.shop.demo.dao.ProductDao;
+import cn.playcall.shop.demo.entity.Item;
 import cn.playcall.shop.demo.entity.Product;
 import cn.playcall.shop.demo.entity.Shop;
 import com.alibaba.fastjson.JSONObject;
@@ -29,10 +31,16 @@ public class AddProductController {
     @Autowired
     private ProductDao productDao;
 
+    @Autowired
+    private ItemDao itemDao;
+
     @RequestMapping(value = "/addProduct")
     public String indexAddProduct(HttpServletRequest request, Model model){
         model.addAttribute("user","shopUser");
+        model.addAttribute("search","search");
         model.addAttribute("bottomInfo","bottomInfo");
+        List<Item> itemList = itemDao.findAll();
+        model.addAttribute("itemList",itemList);
         return "addProduct";
     }
 

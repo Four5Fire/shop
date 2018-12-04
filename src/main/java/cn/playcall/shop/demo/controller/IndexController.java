@@ -34,6 +34,7 @@ public class IndexController {
                 modle.addAttribute("user","shopUser");
             }
         }
+        modle.addAttribute("ulList","ulList");
         modle.addAttribute("search","search");
         modle.addAttribute("bottomInfo","bottomInfo");
         List<Item> itemList = itemDao.findAll();

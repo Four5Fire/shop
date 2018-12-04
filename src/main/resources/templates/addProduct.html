@@ -5,30 +5,20 @@
     <title>wallmart</title>
     <link rel="stylesheet" th:href="@{/static/css/shop.css}"/>
     <link rel="stylesheet" th:href="@{/static/css/fonts.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" type="text/css">
     <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
 </head>
 
 <body onload="carouselMap();">
-<div class="nav" th:fragment="user_refresh">
-    <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" />
-    <!--/*@thymesVar id="user" type="templates"*/-->
-    <div class="nav_right" th:include="nouser::${user}">
-
-    </div>
+<div class="nav" th:include="nouser::${user}">
 </div>
-<div class="secondNav">
-    <h1>
-        wallmart
-    </h1>
-    <div class="searchBox">
-        <input type="text" placeholder="Search for a product..."/>
-        <div id="searchWrapper">
-            <img th:src="@{/static/img/搜索.png}" id="rearchButton"/>
-        </div>
-    </div>
+<div class="secondNav" th:include="nouser::${search}">
+
 </div>
 <div class="thirdNav">
+    <div class="list" th:include="nouser::${ulList}">
 
+    </div>
 </div>
 <div id="turnImg">
     <p>
