@@ -34,6 +34,7 @@ public class UserInfoIndexController {
         model.addAttribute("score",userInfo.getUserScore());
         model.addAttribute("level",userInfo.getUserLevel());
         model.addAttribute("user","user");
+        model.addAttribute("search","search");
         model.addAttribute("ulList","ulList");
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("itemList",itemList);

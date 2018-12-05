@@ -15,6 +15,7 @@
 <div class="nav" th:fragment="user">
     <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" onclick="window.location.href='http://127.0.0.1:7000/shop/index';"/>
     <div class="nav_right">
+        <img th:src="@{/static/img/订单.png}" onmouseover="this.src = '/static/img/订单鼠标悬浮.png';" onmouseout="this.src = '/static/img/订单.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/order';"/>
         <img th:src="@{/static/img/用户白底.png}" onmouseover="this.src = '/static/img/用户鼠标悬浮.png';" onmouseout="this.src = '/static/img/用户白底.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/userinfo';"/>
         <img th:src="@{/static/img/购物车.png}" onmouseover="this.src = '/static/img/购物车鼠标悬浮.png';" onmouseout="this.src = '/static/img/购物车.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/cart';"/>
         <a href="http://127.0.0.1:7000/shop/logout">Logout</a>

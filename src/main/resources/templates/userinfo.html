@@ -11,14 +11,7 @@
 <body>
 <div class="nav" th:include="nouser::${user}">
 </div>
-	<div class="secondNav">
-		<div class="searchBox">
-			<input type="text" placeholder="Search for a product..." />
-			<div id="searchWrapper">
-				<img th:src="@{/static/img/搜索.png}" id="rearchButton"/>
-			</div>
-		</div>
-	</div>
+<div class="secondNav" th:include="nouser::${search}"></div>
 <div class="thirdNav">
 	<div class="list" th:include="nouser::${ulList}"></div>
 </div>
@@ -31,7 +24,6 @@
 				<div class="userinfo w3-banner-grid-right">
 					<div class="w3-banner-text">
 						<h4>您的一次购买，就是我们的一次成长</h4>
-						<a href='#'  >购买历史</a>
 						<a href='http://127.0.0.1:7000/shop/userUpdateIndex'  >个人资料修改</a>
 					</div>
 				</div>
