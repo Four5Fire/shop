@@ -22,6 +22,14 @@ public class Cart {
     @Column(name = "is_bought")
     private Integer isBought;
 
+    public Integer getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
+    }
+
     public Integer getUserId() {
         return userId;
     }

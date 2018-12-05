@@ -49,10 +49,7 @@ public class CartController {
         List<Cart> cartList = cartDao.findAllByUserId(userInfo.getUserId());
         ArrayList<CartProduct> cartProductArrayList = new ArrayList<>();
         for (Cart c:cartList) {
-            System.out.println(c);
-            System.out.println(c.getProductId());
             Product product = productDao.findByProductId(c.getProductId());
-            System.out.println(product);
             CartProduct cartProduct = new CartProduct(product.getProductId(),product.getProductName(),product.getBrand(),
                     product.getPic(),product.getPriceLow(),product.getPriceHigh(),product.getPriceOriginal(),c.getProductNum());
             cartProductArrayList.add(cartProduct);
@@ -73,13 +70,13 @@ public class CartController {
             return new ResponseEntity<JSONObject>(resultJson,HttpStatus.OK);
         }
         UserInfo userInfo = (UserInfo) session.getAttribute("UserInfo");
-        resultJson.put("desc","商品添加成功");
+        resultJson.put("desc","商品成功添加至购物车");
         Product product = productDao.findByProductId(Integer.parseInt(productId));
         Cart cart = cartDao.findByProductId(Integer.parseInt(productId));
         if (cart != null){
             cart.setProductNum(cart.getProductNum()+1);
             cartDao.flush();
-            resultJson.put("desc","商品添加成功");
+            resultJson.put("desc","商品成功添加至购物车");
         }else {
             cart = new Cart();
             cart.setUserId(userInfo.getUserId());
@@ -87,7 +84,7 @@ public class CartController {
             cart.setProductNum(1);
             cart.setIsBought(0);
             cartDao.save(cart);
-            resultJson.put("desc","商品添加成功");
+            resultJson.put("desc","商品成功添加至购物车");
         }
         return new ResponseEntity<JSONObject>(resultJson, HttpStatus.OK);
     }
@@ -100,7 +97,6 @@ public class CartController {
         resultJson.put("desc","下单失败");
         JSONArray jsonArray = saleJson.getJSONArray("order");
         Discount discount = discountDao.findByUserLevel(userInfo.getUserLevel());
-        Integer score = 0;
         for (Object product:jsonArray) {
             Integer productId = Integer.parseInt(((JSONObject) product).getString("productId"));
             Integer productNum = Integer.parseInt(((JSONObject) product).getString("productNum"));
@@ -114,12 +110,22 @@ public class CartController {
             sale.setSumPrice(sumPrice);
             sale.setState(0);
             saleDao.save(sale);
-            score += sumPrice.intValue();
+            cartDao.deleteByUserIdAndProductId(userInfo.getUserId(),productId);
         }
-        userInfo = userDao.findByUserId(userInfo.getUserId());
-        userInfo.setUserScore(userInfo.getUserScore()+score);
-        userDao.flush();
         resultJson.put("desc","下单成功");
+        return new ResponseEntity<JSONObject>(resultJson,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/deleteCart")
+    public ResponseEntity<JSONObject> deleteCart(HttpServletRequest request,@RequestBody JSONObject deleteJson){
+        JSONObject resultJson = new JSONObject();
+        resultJson.put("desc","从购物车删除失败");
+        JSONArray jsonArray = deleteJson.getJSONArray("order");
+        for (Object pro:jsonArray) {
+            Integer productId = Integer.parseInt(((JSONObject)pro).getString("productId"));
+            cartDao.deleteByProductId(productId);
+        }
+        resultJson.put("desc","从购物车删除成功");
         return new ResponseEntity<JSONObject>(resultJson,HttpStatus.OK);
     }
 

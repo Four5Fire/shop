@@ -245,7 +245,7 @@
 	</style>
 	<link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" type="text/css">
 </head>
-<body onResize="adaptBottom();">
+<body onResize="adaptBottom();" onload="adaptBottom()">
 <div class="nav" th:include="nouser::${user}">
 </div>
 <div class="page-shopping-cart" id="shopping-cart">
@@ -338,12 +338,57 @@
                 }
             },
             delectOneProduct: function(index) {
-                this.productList.splice(index, 1);
+                let productId = this.productList[index].productId;
+                let sss = {
+                    "order":[]
+				};
+                sss.order.push({
+					"productId":productId
+				});
+                this.productList.splice(index, 1);	//前端
+                sss = JSON.stringify(sss);
+                $.ajax({
+                    type:'post',
+                    url:"http://127.0.0.1:7000/shop/deleteCart",
+                    data:sss,
+                    contentType: 'application/json;charset=utf-8',
+                }).then((data) => {
+                    alert(data.desc);
+                    adaptBottom();
+                }).catch(() => {
+                    alert(data.desc);
+                });
                 adaptBottom();
             },
             deleteProduct: function() {
+                let productIdArr = [];
+                for(let i = 0; i < this.productList.length; i++) {
+                    if(this.productList[i].select) {
+                        productIdArr.push({
+							"productId": this.productList[i].productId,
+						})
+                    }
+				}
                 this.productList = this.productList.filter(function(item) {
                     return !item.select;
+                });
+                let sss = {
+                    "order":productIdArr
+				};
+                sss = JSON.stringify(sss);
+                $.ajax({
+                    type:'post',
+                    url:"http://127.0.0.1:7000/shop/deleteCart",
+                    data:sss,
+                    contentType: 'application/json;charset=utf-8',
+                }).then((data) => {
+                    alert(data.desc);
+                    this.productList = this.productList.filter(function(item) {
+                        return !item.select;
+                    });
+                    adaptBottom();
+                }).catch(() => {
+                    alert(data.desc);
                 });
                 adaptBottom();
             },
@@ -367,16 +412,6 @@
 					url:"http://127.0.0.1:7000/shop/addSale",
 					data:sss,
                     contentType: 'application/json;charset=utf-8',
-                    // success: function (data) {
-                    //     this.productList = this.productList.filter(function(item) {
-                    //         return !item.select;
-                    //     });
-                    //     adaptBottom();
-                    //     alert(data.desc);
-                    // },
-                    // error: function () {
-                    //     alert(data.desc);
-                    // }
 				}).then((data) => {
                     alert(data.desc);
                     this.productList = this.productList.filter(function(item) {
@@ -393,11 +428,11 @@
             var _this = this;
             this.productList.map(function (item) {
                 _this.$set(item, 'select', true);
-            })
+            });
         }
     });
 
-    window.onload=function adaptBottom() {
+    function adaptBottom() {
         let bottomElement = document.getElementById('bottomInfo');
         if(document.documentElement.offsetHeight - 60 > document.documentElement.clientHeight) {	//底部栏脱离底部
             bottomElement.style.position = 'relative';
