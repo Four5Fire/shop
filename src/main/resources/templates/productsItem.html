@@ -436,7 +436,7 @@
 							<div class=four>
 								<figure>
 									<div class="five">
-										<a th:href="${productsApi}+${product.getProductId()}"><img title=" " alt=" " th:src="@{${product.getPic()}}"></a>
+										<a th:href="'http://127.0.0.1:7000/shop/productDetail/'+${product.getProductId()}"><img title=" " alt=" " th:src="@{${product.getPic()}}"></a>
 										<p th:text="${product.getProductName()}"></p>
 										<h4 th:text="${product.getPriceOriginal()}" th:if="${#lists.isEmpty(product.getPriceOriginal())}"></h4>
 									</div>

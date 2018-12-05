@@ -1,9 +1,6 @@
 package cn.playcall.shop.demo.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Table(name = "t_discount")
@@ -11,6 +8,7 @@ import java.math.BigDecimal;
 public class Discount {
 
     @Id
+    @GeneratedValue
     private Integer userLevel;
 
     @Column(name = "discount")

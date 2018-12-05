@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DiscountDao extends JpaRepository<Discount,Integer> {
 
+    public Discount findByUserLevel(Integer userLevel);
+
 }
