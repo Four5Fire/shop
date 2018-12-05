@@ -65,12 +65,12 @@
                             <div class=four>
                                 <figure>
                                     <div class="five">
-                                        <a th:href="${productsApi}+${product.getProductId()}"><img title=" " alt=" " th:src="@{${product.getPic()}}"></a>
+                                        <a th:href="'http://127.0.0.1:7000/shop/productInfoUpdateIndex/'+${product.getProductId()}"><img title=" " alt=" " th:src="@{${product.getPic()}}"></a>
                                         <p th:text="${product.getProductName()}"></p>
                                         <h4 th:text="${product.getPriceOriginal()}" th:if="${#lists.isEmpty(product.getPriceOriginal())}"></h4>
                                     </div>
                                     <div class="six">
-                                        <input th:id="${product.getProductId()}" type="button" name="submit" th:value="${addCart}" class="button" onclick="addCart(this.id)"/>
+                                        <input th:id="${product.getProductId()}" type="button" name="submit" value="修改商品信息" class="button" onclick="window.location.href='http://127.0.0.1:7000/shop/productInfoUpdateIndex/'+this.id;"/>
                                     </div>
                                 </figure>
                             </div>
@@ -81,5 +81,9 @@
         </div>
     </div>
 </div>
+
+<select name="selection" th:fragment="itemType">
+    <option th:each="item : ${itemList}" th:value="${item.getItemId()}" th:text="${item.getItemName()}"></option>
+</select>
 </body>
 </html>

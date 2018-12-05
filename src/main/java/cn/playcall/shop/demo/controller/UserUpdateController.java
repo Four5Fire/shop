@@ -1,6 +1,8 @@
 package cn.playcall.shop.demo.controller;
 
+import cn.playcall.shop.demo.dao.ItemDao;
 import cn.playcall.shop.demo.dao.UserDao;
+import cn.playcall.shop.demo.entity.Item;
 import cn.playcall.shop.demo.entity.UserInfo;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +31,18 @@ public class UserUpdateController {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private ItemDao itemDao;
+
     @RequestMapping(value = "/userUpdateIndex")
     public String userUpdateIndex(HttpServletRequest request,Model model){
         HttpSession session = request.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("UserInfo");
         model.addAttribute("user","user");
+        model.addAttribute("search","search");
+        model.addAttribute("ulList","ulList");
+        List<Item> itemList = itemDao.findAll();
+        model.addAttribute("itemList",itemList);
         model.addAttribute("username",userInfo.getUserName());
         model.addAttribute("tele",userInfo.getTele());
         model.addAttribute("userPwd",userInfo.getUserpwd());

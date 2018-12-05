@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Userupdate</title>
+    <link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" />
 	<link rel="stylesheet" th:href="@{/static/css/userupdate.css}" />
     <link rel="stylesheet" th:href="@{/static/css/fonts.css}"/>
     <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
@@ -11,20 +12,10 @@
 <body>
 <div class="nav" th:include="nouser::${user}">
 </div>
-	<div class="secondNav">
-		<h1>
-			wallmart
-		</h1>
-		<div class="searchBox">
-			<input type="text" placeholder="Search for a product..." />
-			<div id="searchWrapper">
-				<img th:src="@{/static/img/搜索.png}" id="rearchButton"/>
-			</div>
-		</div>
-	</div>
-	<div class="thirdNav">
-		
-	</div>
+<div class="secondNav" th:include="nouser::${search}"></div>
+<div class="thirdNav">
+    <div class="list" th:include="nouser::${ulList}"></div>
+</div>
 
 
     <form id="userForm" enctype="multipart/form-data" class="basic-grey">

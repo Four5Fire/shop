@@ -41,6 +41,7 @@ public class AddProductController {
         model.addAttribute("ulList","ulList");
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("itemList",itemList);
+        model.addAttribute("itemType", "itemType");
         return "addProduct";
     }
 
@@ -56,6 +57,7 @@ public class AddProductController {
         String productName = params.getParameter("name");
         String brand = params.getParameter("brand");
         String intro = params.getParameter("DESCRIBE");
+        String stock = params.getParameter("stock");
         Product product = productDao.findByShopIdAndProductNameAndBrandAndIntro(shop.getShopId(),productName,brand,intro);
         if (product != null){
             resultJson.put("desc","商品已存在,请勿重复添加");
@@ -67,6 +69,7 @@ public class AddProductController {
             product.setBrand(brand);
             product.setPriceOriginal(new BigDecimal(params.getParameter("price")));
             product.setIntro(intro);
+            product.setStock(Integer.parseInt(stock));
             product.setItemId(Integer.parseInt(params.getParameter("selection")));
             product.setPriceLow(product.getPriceOriginal());
             product.setPriceHigh(product.getPriceOriginal());

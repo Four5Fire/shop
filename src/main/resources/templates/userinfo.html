@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>USER INFO</title>
+	<link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" />
 	<link rel="stylesheet" th:href="@{/static/css/userinfo.css}" />
 	<script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
 </head>
@@ -18,9 +19,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="thirdNav">
-		
-	</div>
+<div class="thirdNav">
+	<div class="list" th:include="nouser::${ulList}"></div>
+</div>
 		<div class="w3-banner-img">
 			<div class='container'>
 				<!--/*@thymesVar id="pic" type="templates"*/-->

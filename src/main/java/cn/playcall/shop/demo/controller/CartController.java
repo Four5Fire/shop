@@ -56,8 +56,13 @@ public class CartController {
     @RequestMapping(value = "/cartAddProduct/{productId}")
     public ResponseEntity<JSONObject> cartAddProduct(HttpServletRequest request,@PathVariable String productId){
         HttpSession session = request.getSession();
-        UserInfo userInfo = (UserInfo) session.getAttribute("UserInfo");
         JSONObject resultJson = new JSONObject();
+        int type = Integer.parseInt((String) session.getAttribute("type"));
+        if (type == 0){
+            resultJson.put("desc","请先登录");
+            return new ResponseEntity<JSONObject>(resultJson,HttpStatus.OK);
+        }
+        UserInfo userInfo = (UserInfo) session.getAttribute("UserInfo");
         resultJson.put("desc","商品添加成功");
         Product product = productDao.findByProductId(Integer.parseInt(productId));
         Cart cart = cartDao.findByProductId(Integer.parseInt(productId));

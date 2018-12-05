@@ -18,7 +18,7 @@ import java.util.List;
 @CrossOrigin
 @Controller
 @RequestMapping(value = "/shop/**")
-public class ProductsItem {
+public class ProductsItemController {
 
     @Autowired
     private ItemDao itemDao;
@@ -29,17 +29,31 @@ public class ProductsItem {
     @RequestMapping(value = "/productsIndex/{itemId}")
     public String productsItemIndex(HttpServletRequest request, Model model, @PathVariable String itemId){
         HttpSession session = request.getSession();
+        int type = Integer.parseInt((String) session.getAttribute("type"));
+        switch (type){
+            case 0:
+                model.addAttribute("user","nologin");
+                break;
+            case 1:
+                model.addAttribute("user","user");
+                break;
+            case 2:
+                model.addAttribute("user","shopUser");
+                break;
+        }
         session.setAttribute("item", itemId);
-        model.addAttribute("user","user");
-        model.addAttribute("bottomInfo","bottomInfo");
+        model.addAttribute("search","search");
+        model.addAttribute("ulList","ulList");
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("itemList",itemList);
+        model.addAttribute("bottomInfo","bottomInfo");
         List<Product> productList = productDao.findAllByItemId(Integer.parseInt(itemId));
-        int productCount = productList.size();
+        for (Product p:productList) {
+            System.out.println(p);
+        }
         model.addAttribute("productList",productList);
-        model.addAttribute("store","store");
         model.addAttribute("addCart","添加至购物车");
-        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productDetail/");
+        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
         return "productsItem";
 
     }

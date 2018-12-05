@@ -23,8 +23,11 @@ public class IndexController {
     @RequestMapping(value = "/index")
     public String index(Model modle, HttpServletRequest request){
         HttpSession session = request.getSession();
-        if (session.getAttribute("type") == null)
+        if (session.getAttribute("type") == null){
+            session.setAttribute("type","0");
             modle.addAttribute("user","nologin");
+        }
+
         else {
             String type = (String) session.getAttribute("type");
             if (type.equals("1")){
