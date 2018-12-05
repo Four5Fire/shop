@@ -54,13 +54,9 @@
 <body onload="carouselMap();">
 <div class="nav" th:include="nouser::${user}">
 </div>
-<div class="secondNav" th:include="nouser::${search}">
-
-</div>
+<div class="secondNav" th:include="nouser::${search}"></div>
 <div class="thirdNav">
-	<div class="list" th:include="nouser::${ulList}">
-
-	</div>
+	<div class="list" th:include="nouser::${ulList}"></div>
 </div>
 <div id="turnImg">
 	<p>
@@ -68,8 +64,6 @@
 		Buy it is to earn
 	</p>
 </div>
-<div id="bottomInfo" th:include="nouser::${bottomInfo}">
-
-</div>
+<div id="bottomInfo" th:include="nouser::${bottomInfo}"></div>
 </body>
 </html>
