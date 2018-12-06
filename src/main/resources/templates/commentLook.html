@@ -1,10 +1,362 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>查看评价</title>
+    <meta charset="utf-8">
+    <title>商品评价</title>
+    <link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" type="text/css">
+
+    <style type='text/css'>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /*导航栏*/
+        .nav {
+            background: rgb(51, 51, 51);
+            height: 60px;
+        }
+        .nav_right {
+            height: 60px;
+            position: absolute;
+            left: 70%;
+            display: inline-flex;
+            margin: auto;
+        }
+        .nav_right > a {
+            width: 120px;
+            text-decoration: none;
+            text-align: center;
+            color: #fff;
+            font-size: 1.1em;
+            font-family: "serif";
+            line-height: 60px;
+            vertical-align: middle;
+        }
+        .nav_right > a:hover {
+            color: rgb(254, 145, 38);
+        }
+        .nav_right > img {
+            height: 30px;
+            width: auto;
+            margin-top: 15px;
+            margin-left: 30px;
+        }
+
+        /*导航栏下面的元素*/
+        .secondNav {
+            height: 120px;
+            width: 100%;
+            background: rgb(245, 245, 245);
+            position: relative;
+        }
+        .secondNav > h1 {
+            color: rgb(254, 145, 38);
+            position: absolute;
+            font-size: 2.5em;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .searchBox {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translate(0%, -50%);
+        }
+        .searchBox > input {
+            height: 40px;
+            font-size: 1.0em;
+            border: solid 1px #444;
+            padding: 0 5px 0 5px;
+            vertical-align: middle;
+        }
+        #searchWrapper {
+            background: rgb(245, 145, 38);
+            border-radius: 5px;
+            height: 45px;
+            width: 45px;
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        #searchWrapper:hover {
+            background: rgb(51, 51, 51);
+        }
+        #rearchButton {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            top: 50%;
+            left: 50%;
+        }
+
+        /*第三行布局*/
+        .thirdNav {
+            width: 100%;
+            height: 50px;
+            background: rgb(245, 145, 38);
+        }
+
+        /*主页轮播图*/
+        #turnImg {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            -webkit-transition: all 1.5s;
+        }
+        #turnImg > p {
+            position: absolute;
+            text-align: center;
+            color: #eee;
+            font-size: 3.0em;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /*底部栏*/
+        #bottomInfo {
+            position: relative;
+            bottom:0px;
+            width: 100%;
+            height: 60px;
+            background: rgb(42, 42, 42);
+        }
+        #bottomInfo > p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #eee;
+        }
+        /*提交表单*/
+        /* Basic Grey */
+        .basic-grey {
+            margin-top:5%;
+            margin-bottom: 5%;
+            margin-left: 50%;
+            max-width: 550px;
+            background: rgba(250,250,240,70);
+            padding: 25px 15px 25px 10px;
+            font: 12px Georgia, "Times New Roman", Times, serif;
+            color: #888;
+            text-shadow: 1px 1px 1px #FFF;
+            border:1px solid #E4E4E4;
+        }
+        .basic-grey h1 {
+            font-size: 25px;
+            padding: 0px 0px 10px 40px;
+            display: block;
+            border-bottom:1px solid #E4E4E4;
+            margin: -10px -15px 30px -10px;;
+            color: #888;
+        }
+        .basic-grey h1>span {
+            display: block;
+            font-size: 11px;
+        }
+        .basic-grey label {
+            display: block;
+            margin: 20px;
+        }
+        .basic-grey label>span {
+            float: left;
+            width: 20%;
+            text-align: right;
+            padding-right: 10px;
+            color: #888;
+            margin-top:10px;
+            font-size:15px;
+        }
+        .basic-grey input[type="text"], .basic-grey input[type="email"], .basic-grey textarea, .basic-grey select {
+            border: 1px solid #DADADA;
+            color: #888;
+            height: 30px;
+            margin-bottom: 16px;
+            margin-right: 6px;
+            margin-top: 2px;
+            outline: 0 none;
+            padding: 3px 3px 3px 5px;
+            width: 70%;
+            font-size: 12px;
+            line-height:15px;
+            box-shadow: inset 0px 1px 4px #ECECEC;
+            -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+            -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+        }
+        .basic-grey input[type="file"] {
+            height: 30px;
+            margin-bottom: 16px;
+            margin-right: 6px;
+            margin-top: 2px;
+            outline: 0 none;
+            padding: 3px 3px 3px 5px;
+            width: 70%;
+            font-size: 12px;
+            line-height:15px;
+            box-shadow: inset 0px 1px 4px #ECECEC;
+            -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+            -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+        }
+        .basic-grey textarea{
+            padding: 5px 3px 3px 5px;
+        }
+
+        .basic-grey textarea{
+            height:100px;
+        }
+        .basic-grey .button {
+            background: #E27575;
+            border: none;
+            padding: 10px 25px 10px 25px;
+            color: #FFF;
+            box-shadow: 1px 1px 5px #B6B6B6;
+            border-radius: 3px;
+            text-shadow: 1px 1px 1px #9E3F3F;
+            cursor: pointer;
+        }
+        .basic-grey .button:hover {
+            background: #CF7A7A
+        }
+
+        .error{
+            width:200px;
+            float:right;
+            font-size:0.6em;
+            height:5px;
+            line-height:5px;
+            color:#F00;
+            margin-top:20px;
+        }
+        .success{
+            width:200px;
+            float:right;
+            font-size:0.6em;
+            height:5px;
+            line-height:5px;
+            color:#096;
+            margin-top:20px;
+        }
+        .default{
+            width:200px;
+            font-size:0.6em;
+            height:5px;
+            line-height:5px;
+            float:right;
+            color:#999;
+            margin-top:10px;
+        }
+
+        /*  打星*/
+
+        .detail {
+            position: absolute;
+            text-align: right;
+            right: 5px;
+            bottom: 5px;
+            width: 50%;
+        }
+
+        a[href*="intent"] {
+            display: inline-block;
+            margin-top: 0.4em;
+        }
+
+
+        /*   Rating styles */
+        .start_zyz {
+            width: 226px;
+            font-size: 30px;
+            overflow: hidden;
+            cursor:pointer;
+            color: orange;
+            opacity:0.8;
+        }
+
+        /*照片*/
+        .polaroids{width:970px;margin:0 0 18px 10px;}
+        .polaroids li{display: inline;}
+        .polaroids a{
+            background: #fff;
+            display: inline;
+            float:left;
+            margin:10%  10% 10% 40%;
+            width:30%;
+            padding:10px 10px 15px;
+            text-align: center;
+            font-family: "Marker Felt", sans-serif;text-decoration: none;color:#333;font-size: 18px;
+            -webkit-box-shadow:0 3px 6px rgba(0,0,0,.25);
+            -moz-box-shadow:0 3px 6px rgba(0,0,0,.25);
+            -o-box-shadow:0 3px 6px rgba(0,0,0,.25);
+            box-shadow:0 3px 6px rgba(0,0,0,.25);
+        }
+        .polaroids img{
+            display: block;
+            width:80%;
+            margin:10%;}
+        .polaroids a:after{content: attr(title);/* Ie8+,FF,Chorme,Safari */}
+
+        .polaroids li a:hover{
+            -webkit-transform:scale(1.1);
+            transition-duration: 0.5s;
+            -moz-transform:scale(1.1);
+            -ms-transform:scale(1.1);
+            transform:scale(1.1);
+            -webkit-box-shadow:0 3px 6px rgba(0,0,0,.5);
+            -moz-box-shadow:0 3px 6px rgba(0,0,0,.5);
+            -o-box-shadow:0 3px 6px rgba(0,0,0,.5);
+            box-shadow:0 3px 6px rgba(0,0,0,.5);
+            position: relative;
+            z-index: 5;
+            opacity:0.8;
+        }
+        .polaroids li.messy a{margin-top:-375px;margin-left:160px;
+            -webkit-transform:rotate(-5deg);
+            -moz-transform:rotate(-5deg);
+            -ms-transform:rotate(-5deg);
+            transform:rotate(-5deg);
+        }
+    </style>
+    <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+
 </head>
+
 <body>
+<div class="nav" th:include="nouser::${user}"></div>
+<div class="secondNav" th:include="nouser::${search}"></div>
+<div class="thirdNav">
+    <div class="list" th:include="nouser::${ulList}"></div>
+</div>
+
+<ul class="polaroids">
+    <li>
+        <a th:href="${productDetail}" th:title="${productName}">
+            <img th:src="@{${productPic}}" alt="Roeland!">
+            <p th:text="'购买数量：'+${productNum}"> 购买数量</p>
+            <p th:text="'￥'+${productSumPrice}"> 购买价格</p>
+        </a>
+    </li>
+</ul>
+<form enctype="multipart/form-data"  action="" method="post" class="basic-grey">
+    <h1>反馈
+        <span>请为该次购物评价</span>
+    </h1>
+    <label>
+        <span>STAR :</span>
+
+    </label>
+    <span th:text="${star}" class='start_zyz'></span>
+
+    <span class="default" id="commentErr">评价此次购物经历 不超过140字符</span>
+    <label>
+        <span>评价 :</span>
+        <textarea id="DESCRIBE" name="DESCRIBE" disabled="disabled" th:text="${feedback}" placeholder="请评价不超过140字符" style="resize:none;"></textarea>
+    </label>
+</form>
+
+
+<div id="bottomInfo" th:include="nouser::${bottomInfo}"></div>
 
 </body>
 </html>

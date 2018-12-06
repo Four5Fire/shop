@@ -40,7 +40,6 @@ public class CommentController {
 
     @RequestMapping(value = "/commentClient/{saleId}")
     public String commentClient(HttpServletRequest request, Model model, @PathVariable String saleId){
-        System.out.println(saleId);
         Sale sale = saleDao.findBySaleId(Integer.parseInt(saleId));
         Product product = productDao.findByProductId(sale.getProductId());
         model.addAttribute("user","user");
@@ -78,7 +77,10 @@ public class CommentController {
             comment.setStarTogive(startToGive);
             comment.setFeedBack(feedBack);
             commentDao.save(comment);
-            BigDecimal star = (shop.getStar().multiply(new BigDecimal(shop.getShopSold()-1).add(new BigDecimal(startToGive)))).divide(new BigDecimal(shop.getShopSold()));
+            BigDecimal star = shop.getStar().multiply(new BigDecimal(shop.getShopSold()-1)).add(new BigDecimal(startToGive));
+            System.out.println(star);
+            star = star.divide(new BigDecimal(shop.getShopSold()),2);
+            System.out.println(star);
             shop.setStar(star);
             shopDao.flush();
             resultJson.put("desc","评价提交成功");
@@ -86,30 +88,37 @@ public class CommentController {
         return new ResponseEntity<JSONObject>(resultJson, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/judgeComment")
-    public ResponseEntity<JSONObject> judgeCommentIndex(HttpServletRequest request, @RequestBody JSONObject judgeJson){
-        JSONObject resultJson = new JSONObject();
-        Integer saleId = Integer.parseInt(judgeJson.getString("saleId"));
-        Sale sale = saleDao.findBySaleId(saleId);
-        if (sale.getState() == 2){
-            Comment comment = commentDao.findBySaleId(saleId);
-            if (comment != null){
-                judgeJson.put("code","000002");
-                judgeJson.put("desc","该订单已经进行过评价");
-            }else {
-                judgeJson.put("code","000000");
-                judgeJson.put("desc","请求成功");
-            }
-
-        }else {
-            judgeJson.put("code","000001");
-            judgeJson.put("desc","订单未签收，无法进行评价");
+    @RequestMapping(value = "/commentLook/{saleId}")
+    public String commentLook(HttpServletRequest request, @PathVariable String saleId,Model model){
+        HttpSession session = request.getSession();
+        String type = (String) session.getAttribute("type");
+        if (type.equals("1")){
+            model.addAttribute("user","user");
+        }else if (type.equals("2")){
+            model.addAttribute("user","shopUser");
         }
-        return new ResponseEntity<JSONObject>(resultJson,HttpStatus.OK);
-    }
+        Sale sale = saleDao.findBySaleId(Integer.parseInt(saleId));
+        Comment comment = commentDao.findBySaleId(sale.getSaleId());
+        Product product = productDao.findByProductId(sale.getProductId());
+        model.addAttribute("search","search");
+        model.addAttribute("ulList","ulList");
+        List<Item> itemList = itemDao.findAll();
+        model.addAttribute("itemList",itemList);
+        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
+        model.addAttribute("productDetail","http://127.0.0.1:7000/shop/productDetail/"+product.getProductId());
+        model.addAttribute("productPic",product.getPic());
+        model.addAttribute("productNum",sale.getProductNum());
+        model.addAttribute("productSumPrice",sale.getSumPrice());
+        model.addAttribute("productName",product.getProductName());
+        model.addAttribute("bottomInfo","bottomInfo");
+        model.addAttribute("saleId",saleId);
+        String star = "";
+        for (int i = 0; i < comment.getStarTogive(); i++) {
+            star += "★";
+        }
+        model.addAttribute("star",star);
+        model.addAttribute("feedback",comment.getFeedBack());
 
-    @RequestMapping(value = "/commentLook")
-    public String commentLook(){
         return "commentLook";
     }
 }

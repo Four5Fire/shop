@@ -13,8 +13,9 @@ public class OrderClient {
     private BigDecimal pro_price_original;
     private Integer pro_num;
     private String pro_status;
-    private String feedbackApi;
+    private String fbApi;
     private String feedback;
+    private String feedbackApi;
 
     public Integer getProductId() {
         return productId;
@@ -96,6 +97,14 @@ public class OrderClient {
         this.feedback = feedback;
     }
 
+    public String getFbApi() {
+        return fbApi;
+    }
+
+    public void setFbApi(String fbApi) {
+        this.fbApi = fbApi;
+    }
+
     public String getFeedbackApi() {
         return feedbackApi;
     }
@@ -116,8 +125,9 @@ public class OrderClient {
                 ", pro_price_original=" + pro_price_original +
                 ", pro_num=" + pro_num +
                 ", pro_status='" + pro_status + '\'' +
-                ", feedbackApi='" + feedbackApi + '\'' +
+                ", fbApi='" + fbApi + '\'' +
                 ", feedback='" + feedback + '\'' +
+                ", feedbackApi='" + feedbackApi + '\'' +
                 '}';
     }
 }

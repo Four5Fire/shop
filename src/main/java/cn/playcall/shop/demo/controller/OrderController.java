@@ -2,7 +2,6 @@ package cn.playcall.shop.demo.controller;
 
 import cn.playcall.shop.demo.dao.*;
 import cn.playcall.shop.demo.entity.*;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -63,21 +62,23 @@ public class OrderController {
 
             if (sale.getState() == 0){
                 orderClient.setPro_status("等待卖家发货");
-                orderClient.setFeedbackApi("http://127.0.0.1:7000/shop/commentClient/");
+                orderClient.setFbApi("http://127.0.0.1:7000/shop/commentClient/");
+                orderClient.setFeedbackApi("#");
                 orderClient.setFeedback("未评价");
             }else if (sale.getState() == 1){
-                orderClient.setFeedbackApi("http://127.0.0.1:7000/shop/commentClient/");
+                orderClient.setFbApi("http://127.0.0.1:7000/shop/commentClient/");
+                orderClient.setFeedbackApi("#");
                 orderClient.setFeedback("未评价");
                 orderClient.setPro_status("待签收");
             }else if (sale.getState() == 2){
                 if (comment != null){
                     //评价入口
-                    orderClient.setFeedbackApi("http://127.0.0.1:7000/shop/commentClient/"+orderClient.getProductId());
-                    orderClient.setFeedback("立即评价");
-                }else {
-                    //查看评价入口
                     orderClient.setFeedbackApi("http://127.0.0.1:7000/shop/commentLook/"+orderClient.getProductId());
                     orderClient.setFeedback("查看评价");
+                }else {
+                    //查看评价入口
+                    orderClient.setFeedbackApi("http://127.0.0.1:7000/shop/commentClient/"+orderClient.getProductId());
+                    orderClient.setFeedback("立即评价");
                 }
                 orderClient.setPro_status("已签收");
             }
@@ -115,19 +116,25 @@ public class OrderController {
                 orderShop.setPro_num(s.getProductNum());
                 if (s.getState() == 0){
                     orderShop.setPro_status("待发货");
+                    orderShop.setFeedbackApi("#");
+                    orderShop.setFeedback("买家未评价");
                 }else if (s.getState() == 1){
                     orderShop.setPro_status("等待买家签收");
+                    orderShop.setFeedbackApi("#");
+                    orderShop.setFeedback("买家未评价");
                 }else if (s.getState() == 2){
                     orderShop.setPro_status("买家已签收");
+                    Comment comment = commentDao.findBySaleId(s.getSaleId());
+                    if (comment == null){
+                        orderShop.setFeedbackApi("#");
+                        orderShop.setFeedback("等待买家评价");
+                    }else {
+                        orderShop.setFeedbackApi("http://127.0.0.1:7000/shop/commentLook/"+s.getSaleId());
+                        orderShop.setFeedback("查看用户评价");
+                    }
                 }
-                Comment comment = commentDao.findBySaleId(s.getSaleId());
-                if (comment != null){
-                    orderShop.setFeedbackApi("#");
-                    orderShop.setFeedback("用户未评价");
-                }else {
-                    orderShop.setFeedbackApi("http://127.0.0.1:7000/shop/commentLook/"+s.getSaleId());
-                    orderShop.setFeedback("查看用户评价");
-                }
+
+
                 orderShopArrayList.add(orderShop);
             }
         }
