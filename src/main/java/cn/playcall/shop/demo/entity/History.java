@@ -9,6 +9,9 @@ public class History {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer historyId;
+
+    @Column(name = "product_id")
     private Integer productId;
 
     @Column(name = "history")
@@ -16,6 +19,14 @@ public class History {
 
     @Column(name = "price")
     private BigDecimal price;
+
+    public Integer getHistoryId() {
+        return historyId;
+    }
+
+    public void setHistoryId(Integer historyId) {
+        this.historyId = historyId;
+    }
 
     public Integer getProductId() {
         return productId;
@@ -44,7 +55,8 @@ public class History {
     @Override
     public String toString() {
         return "History{" +
-                "productId=" + productId +
+                "historyId=" + historyId +
+                ", productId=" + productId +
                 ", history='" + history + '\'' +
                 ", price=" + price +
                 '}';

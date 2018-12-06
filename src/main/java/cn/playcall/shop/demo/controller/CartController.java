@@ -68,6 +68,9 @@ public class CartController {
         if (type == 0){
             resultJson.put("desc","请先登录");
             return new ResponseEntity<JSONObject>(resultJson,HttpStatus.OK);
+        }else if (type == 2){
+            resultJson.put("desc","请切换至普通用户账号");
+            return new ResponseEntity<JSONObject>(resultJson,HttpStatus.OK);
         }
         UserInfo userInfo = (UserInfo) session.getAttribute("UserInfo");
         resultJson.put("desc","商品成功添加至购物车");

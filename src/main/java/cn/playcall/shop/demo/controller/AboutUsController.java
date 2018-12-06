@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,13 +15,10 @@ import java.util.List;
 @CrossOrigin
 @Controller
 @RequestMapping(value = "/shop/**")
-public class IndexController {
+public class AboutUsController {
 
-    @Autowired
-    private ItemDao itemDao;
-
-    @RequestMapping(value = "/index")
-    public String index(Model model, HttpServletRequest request){
+    @RequestMapping(value = "/aboutUs")
+    public String aboutUsIndex(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         if (session.getAttribute("type") == null){
             session.setAttribute("type","0");
@@ -39,12 +35,7 @@ public class IndexController {
                 model.addAttribute("user","nologin");
             }
         }
-        model.addAttribute("ulList","ulList");
-        model.addAttribute("search","search");
-        model.addAttribute("bottomInfo","bottomInfo");
-        List<Item> itemList = itemDao.findAll();
-        model.addAttribute("itemList",itemList);
-        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
-        return "index";
+
+        return "aboutUs";
     }
 }

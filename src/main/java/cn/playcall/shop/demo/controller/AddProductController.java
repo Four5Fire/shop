@@ -1,7 +1,9 @@
 package cn.playcall.shop.demo.controller;
 
+import cn.playcall.shop.demo.dao.HistoryDao;
 import cn.playcall.shop.demo.dao.ItemDao;
 import cn.playcall.shop.demo.dao.ProductDao;
+import cn.playcall.shop.demo.entity.History;
 import cn.playcall.shop.demo.entity.Item;
 import cn.playcall.shop.demo.entity.Product;
 import cn.playcall.shop.demo.entity.Shop;
@@ -20,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin
@@ -32,6 +36,9 @@ public class AddProductController {
 
     @Autowired
     private ItemDao itemDao;
+
+    @Autowired
+    private HistoryDao historyDao;
 
     @RequestMapping(value = "/addProduct")
     public String indexAddProduct(HttpServletRequest request, Model model){
@@ -88,11 +95,22 @@ public class AddProductController {
             outputStream.close();
             product.setPic("/shopUser/shopPro"+shop.getShopId()+uTime+"."+fileName.split("\\.")[1]);
             productDao.save(product);
+
+            History history = new History();
+
+            history.setHistory(getCutTime());
+            history.setPrice(product.getPriceOriginal());
+            history.setProductId(product.getProductId());
+            historyDao.save(history);
             resultJson.put("desc","商品添加成功");
         }
         System.out.println(resultJson);
         return new ResponseEntity<JSONObject>(resultJson, HttpStatus.OK);
     }
 
-
+    private String getCutTime(){
+        Date date = new Date();//获得系统时间.
+        String dateStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+        return dateStr;
+    }
 }

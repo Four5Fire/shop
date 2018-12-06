@@ -400,7 +400,7 @@
 		}
 	</style>
 	<script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
-	<script>
+	<script th:inline="javascript">
 
         function adaptBottom() {
             let bottomElement = document.getElementById('bottomInfo');
@@ -414,8 +414,10 @@
 //			console.log('offsetHeight: ' + document.documentElement.offsetHeight + ' clientHeight: ' + document.documentElement.clientHeight);
         }
 
+        var urlApi = [[${urlApi}]];
+
         function addCart(id) {
-            let url = 'http://127.0.0.1:7000/shop/cartAddProduct/'+id;
+            let url = urlApi+id;
             console.log(url);
             $.ajax({
                 type:'post',

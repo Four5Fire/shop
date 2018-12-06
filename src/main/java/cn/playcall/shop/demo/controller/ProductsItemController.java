@@ -33,6 +33,7 @@ public class ProductsItemController {
         switch (type){
             case 0:
                 model.addAttribute("user","nologin");
+                model.addAttribute("addCart","添加至购物车");
                 break;
             case 1:
                 model.addAttribute("user","user");
@@ -41,6 +42,8 @@ public class ProductsItemController {
                 model.addAttribute("user","shopUser");
                 break;
         }
+        model.addAttribute("addCart","添加至购物车");
+        model.addAttribute("urlApi","http://127.0.0.1:7000/shop/cartAddProduct/");
         session.setAttribute("item", itemId);
         model.addAttribute("search","search");
         model.addAttribute("ulList","ulList");
@@ -48,11 +51,8 @@ public class ProductsItemController {
         model.addAttribute("itemList",itemList);
         model.addAttribute("bottomInfo","bottomInfo");
         List<Product> productList = productDao.findAllByItemId(Integer.parseInt(itemId));
-        for (Product p:productList) {
-            System.out.println(p);
-        }
         model.addAttribute("productList",productList);
-        model.addAttribute("addCart","添加至购物车");
+
         model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
         return "productsItem";
 

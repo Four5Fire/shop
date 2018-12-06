@@ -1,8 +1,10 @@
 package cn.playcall.shop.demo.controller;
 
+import cn.playcall.shop.demo.dao.HistoryDao;
 import cn.playcall.shop.demo.dao.ItemDao;
 import cn.playcall.shop.demo.dao.ProductDao;
 import cn.playcall.shop.demo.dao.SaleDao;
+import cn.playcall.shop.demo.entity.History;
 import cn.playcall.shop.demo.entity.Item;
 import cn.playcall.shop.demo.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class ProductDetailController {
     @Autowired
     private SaleDao saleDao;
 
+    @Autowired
+    private HistoryDao historyDao;
+
     @RequestMapping(value = "/productDetail/{productId}")
     public String productDetailIndex(HttpServletRequest request, Model model, @PathVariable String productId){
         model.addAttribute("user","user");
@@ -46,6 +51,10 @@ public class ProductDetailController {
         model.addAttribute("productCount", saleDao.countAllByProductId(Integer.parseInt(productId)));
         model.addAttribute("productPrice",product.getPriceOriginal());
         model.addAttribute("bottomInfo","bottomInfo");
+        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
+        List<History> historyList = historyDao.findAllByProductId(product.getProductId());
+        model.addAttribute("historyList",historyList);
+
         return "productDetail_Client";
     }
 }

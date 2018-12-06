@@ -38,6 +38,7 @@ public class UserInfoIndexController {
         model.addAttribute("ulList","ulList");
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("itemList",itemList);
+        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
         model.addAttribute("bottomInfo","bottomInfo");
         model.addAttribute("pic",userInfo.getUserPic());
         return "userinfo";
