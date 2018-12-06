@@ -1,8 +1,6 @@
 package cn.playcall.shop.demo.controller;
 
-import cn.playcall.shop.demo.dao.ProductDao;
-import cn.playcall.shop.demo.dao.SaleDao;
-import cn.playcall.shop.demo.dao.UserDao;
+import cn.playcall.shop.demo.dao.*;
 import cn.playcall.shop.demo.entity.*;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -34,6 +32,12 @@ public class OrderController {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private ShopDao shopDao;
+
+    @Autowired
+    private CommentDao commentDao;
+
     @RequestMapping(value = "/orderClient")
     public String orderClientIndex(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
@@ -60,6 +64,17 @@ public class OrderController {
                 orderClient.setPro_status("待签收");
             }else if (sale.getState() == 2){
                 orderClient.setPro_status("已签收");
+            }
+
+            Comment comment = commentDao.findBySaleId(sale.getSaleId());
+            if (comment != null){
+                //评价入口
+                orderClient.setFeedbackApi("http://127.0.0.1:7000/shop/commentClient/"+orderClient.getProductId());
+                orderClient.setFeedback("立即评价");
+            }else {
+                //查看评价入口
+                orderClient.setFeedbackApi("http://127.0.0.1:7000/shop/commentLook/"+orderClient.getProductId());
+                orderClient.setFeedback("查看评价");
             }
             orderClientArrayList.add(orderClient);
         }
@@ -146,8 +161,11 @@ public class OrderController {
             if (product.getStock() - sale.getProductNum() >= 0){
                 sale.setState(1);
                 saleDao.flush();
-                product.setStock(product.getStock()-1);
+                product.setStock(product.getStock()-sale.getProductNum());
                 productDao.flush();
+                Shop shop = shopDao.findByShopId(product.getShopId());
+                shop.setShopSold(shop.getShopSold()+sale.getProductNum());
+                shopDao.flush();
                 resultJson.put("code","000000");
                 resultJson.put("desc","发货成功");
             }else {

@@ -10,4 +10,6 @@ public interface ShopDao extends JpaRepository<Shop,Integer> {
     public Shop findByTele(String tele);
 
     public Shop findByTeleAndAndShopPwd(String tele, String shopPwd);
+
+    public Shop findByShopId(Integer shopId);
 }

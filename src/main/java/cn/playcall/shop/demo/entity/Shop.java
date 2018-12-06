@@ -76,6 +76,10 @@ public class Shop {
         this.shopSold = shopSold;
     }
 
+    public Integer getShopSold() {
+        return shopSold;
+    }
+
     public String getFoundDate() {
         return foundDate;
     }

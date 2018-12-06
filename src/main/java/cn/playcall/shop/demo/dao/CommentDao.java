@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CommentDao extends JpaRepository<Comment,Integer> {
+
+    public Comment findBySaleId(Integer saleId);
 }

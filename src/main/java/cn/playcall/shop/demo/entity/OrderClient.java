@@ -13,6 +13,8 @@ public class OrderClient {
     private BigDecimal pro_price_original;
     private Integer pro_num;
     private String pro_status;
+    private String feedbackApi;
+    private String feedback;
 
     public Integer getProductId() {
         return productId;
@@ -86,6 +88,22 @@ public class OrderClient {
         this.pro_status = pro_status;
     }
 
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
+    public String getFeedbackApi() {
+        return feedbackApi;
+    }
+
+    public void setFeedbackApi(String feedbackApi) {
+        this.feedbackApi = feedbackApi;
+    }
+
     @Override
     public String toString() {
         return "OrderClient{" +
@@ -98,6 +116,8 @@ public class OrderClient {
                 ", pro_price_original=" + pro_price_original +
                 ", pro_num=" + pro_num +
                 ", pro_status='" + pro_status + '\'' +
+                ", feedbackApi='" + feedbackApi + '\'' +
+                ", feedback='" + feedback + '\'' +
                 '}';
     }
 }

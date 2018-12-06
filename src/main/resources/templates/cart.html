@@ -273,9 +273,9 @@
 				</td>
 				<td class="td-num">
 					<div class="product-num">
-						<a href="javascript:;" class="num-reduce num-do fl" @click="item.pro_num>0?item.pro_num--:''"><span></span></a>
+						<a href="javascript:;" class="num-reduce num-do fl" @click="reduceNum(item);"><span></span></a>
 						<input type="text" class="num-input" v-model="item.pro_num">
-						<a href="javascript:;" class="num-add num-do fr" @click="item.pro_num++"><span></span></a>
+						<a href="javascript:;" class="num-add num-do fr" @click="addNum(item);"><span></span></a>
 					</div>
 				</td>
 				<td class="td-price">
@@ -422,7 +422,28 @@
                     alert(data.desc);
 				});
 
-            }
+            },
+            changePro_num: function(elem){
+                let sss = {
+                    "productId":elem.productId,
+                    "productNum":elem.pro_num
+                };
+                sss = JSON.stringify(sss);
+                $.ajax({
+                    type:'post',
+                    url:"http://127.0.0.1:7000/shop/changeCart",
+                    data:sss,
+                    contentType: 'application/json;charset=utf-8'
+                })
+            },
+			reduceNum: function(elem) {
+                elem.pro_num = elem.pro_num > 0 ? (elem.pro_num - 1) : elem.pro_num;
+                this.$options.methods.changePro_num(elem);
+			},
+			addNum: function(elem) {
+                elem.pro_num = elem.pro_num > 0 ? (elem.pro_num + 1) : elem.pro_num;
+                this.$options.methods.changePro_num(elem);
+			}
         },
         mounted: function() {
             var _this = this;

@@ -14,6 +14,8 @@ public interface CartDao extends JpaRepository<Cart,Integer> {
 
     public Cart findByProductId(Integer productId);
 
+    public Cart findByUserIdAndProductId(Integer userId,Integer productId);
+
     @Transactional
     public void deleteByUserIdAndProductId(Integer userId, Integer productId);
 

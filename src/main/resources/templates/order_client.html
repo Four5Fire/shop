@@ -296,7 +296,7 @@
                     <p><span id="status">{{item.pro_status}}</span></p>
                 </td>
                 <td class="td-judge">
-                    <p><span><a href="#" class="a_judge">评价</a></span></p>
+                    <p><span><a :href="item.feedbackApi" class="a_judge" :id="item.productId" onclick="commentIndex(this.id)" >{{item.feedback}}</a></span></p>
                 </td>
                 <td class="td-do"><a href="javascript:;" class="product-delect" @click="delectOneProduct(index)">签收</a></td>
             </tr>

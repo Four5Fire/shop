@@ -129,6 +129,18 @@ public class CartController {
         return new ResponseEntity<JSONObject>(resultJson,HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/changeCart")
+    public void changeCart(HttpServletRequest request, @RequestBody JSONObject changeJson){
+        HttpSession session = request.getSession();
+        UserInfo userInfo = (UserInfo) session.getAttribute("UserInfo");
+        System.out.println(changeJson);
+        Integer product = Integer.parseInt(changeJson.getString("productId"));
+        Integer productNum = Integer.parseInt(changeJson.getString("productNum"));
+        Cart cart = cartDao.findByUserIdAndProductId(userInfo.getUserId(),product);
+        cart.setProductNum(productNum);
+        cartDao.flush();
+    }
+
     private String getCutTime(){
         Date date = new Date();//获得系统时间.
         String dateStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
