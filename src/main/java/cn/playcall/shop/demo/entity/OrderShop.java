@@ -14,6 +14,8 @@ public class OrderShop {
     private BigDecimal pro_price_sum;
     private Integer pro_num;
     private String pro_status;
+    private String feedback;
+    private String feedbackApi;
 
     public String getUserName() {
         return userName;
@@ -95,6 +97,22 @@ public class OrderShop {
         this.pro_status = pro_status;
     }
 
+    public String getFeedbackApi() {
+        return feedbackApi;
+    }
+
+    public void setFeedbackApi(String feedbackApi) {
+        this.feedbackApi = feedbackApi;
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
     @Override
     public String toString() {
         return "OrderShop{" +
@@ -105,8 +123,11 @@ public class OrderShop {
                 ", pro_brand='" + pro_brand + '\'' +
                 ", pro_img='" + pro_img + '\'' +
                 ", pro_price_original=" + pro_price_original +
+                ", pro_price_sum=" + pro_price_sum +
                 ", pro_num=" + pro_num +
                 ", pro_status='" + pro_status + '\'' +
+                ", feedback='" + feedback + '\'' +
+                ", feedbackApi='" + feedbackApi + '\'' +
                 '}';
     }
 }

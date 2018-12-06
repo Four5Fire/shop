@@ -358,7 +358,9 @@
                     contentType: 'application/json;charset=utf-8',
                 }).then((data) => {
                     if (data.code == "000001") {
-                        this.productList[index].pro_status = "已签收"
+                        this.productList[index].pro_status = "已签收";
+                        this.productList[index].feedback = "立即评价";
+                        this.productList[index].feedbackApi += this.productList[index].productId;
                     }
                     alert(data.desc);
                     adaptBottom();
