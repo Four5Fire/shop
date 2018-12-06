@@ -385,20 +385,32 @@
 			clip: rect(0, 0, 0, 0);
 			border: 0;
 		}
-
+		body{
+			position: static;
+		}
+		html{
+			position: relative;
+		}
+		#bottomInfo {
+			position: absolute;
+			width: 100%;
+			height: 60px;
+			bottom: -180px;
+			background: rgb(42, 42, 42);
+		}
 	</style>
 	<script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
 	<script>
 
         function adaptBottom() {
             let bottomElement = document.getElementById('bottomInfo');
-            if(document.documentElement.offsetHeight - 60 > document.documentElement.clientHeight) {	//底部栏脱离底部
-                bottomElement.style.position = 'relative';
-            }
-            else {
-                bottomElement.style.position = 'absolute';
-                bottomElement.style.bottom = '0px';
-            }
+            // if(document.documentElement.offsetHeight - 60 > document.documentElement.clientHeight) {	//底部栏脱离底部
+            //     bottomElement.style.position = 'absolute';
+            // }
+            // else {
+            //     bottomElement.style.position = 'absolute';
+            //     bottomElement.style.bottom = '0px';
+            // }
 //			console.log('offsetHeight: ' + document.documentElement.offsetHeight + ' clientHeight: ' + document.documentElement.clientHeight);
         }
 
@@ -421,29 +433,31 @@
 </head>
 
 <body onresize="adaptBottom()" onload="adaptBottom()">
-<div class="nav" th:include="nouser::${user}"></div>
-<div class="secondNav" th:include="nouser::${search}"></div>
-<div class="thirdNav">
-	<div class="list" th:include="nouser::${ulList}"></div>
-</div>
-<div class="t1">
-	<div class="t2">
-		<div class="t3">
-			<div class="t4" th:each="product:${productList}">
-				<div class="one" >
-					<div class="two">
-						<div class="three">
-							<div class=four>
-								<figure>
-									<div class="five">
-										<a th:href="'http://127.0.0.1:7000/shop/productDetail/'+${product.getProductId()}"><img title=" " alt=" " th:src="@{${product.getPic()}}"></a>
-										<p th:text="${product.getProductName()}"></p>
-										<h4 th:text="${product.getPriceOriginal()}" th:if="${#lists.isEmpty(product.getPriceOriginal())}"></h4>
-									</div>
-									<div class="six">
-										<input th:id="${product.getProductId()}" type="button" name="submit" th:value="${addCart}" class="button" onclick="addCart(this.id)"/>
-									</div>
-								</figure>
+<div>
+	<div class="nav" th:include="nouser::${user}"></div>
+	<div class="secondNav" th:include="nouser::${search}"></div>
+	<div class="thirdNav">
+		<div class="list" th:include="nouser::${ulList}"></div>
+	</div>
+	<div class="t1">
+		<div class="t2">
+			<div class="t3">
+				<div class="t4" th:each="product:${productList}">
+					<div class="one" >
+						<div class="two">
+							<div class="three">
+								<div class=four>
+									<figure>
+										<div class="five">
+											<a th:href="'http://127.0.0.1:7000/shop/productDetail/'+${product.getProductId()}"><img title=" " alt=" " th:src="@{${product.getPic()}}"></a>
+											<p th:text="${product.getProductName()}"></p>
+											<h4 th:text="${product.getPriceOriginal()}" th:if="${#lists.isEmpty(product.getPriceOriginal())}"></h4>
+										</div>
+										<div class="six">
+											<input th:id="${product.getProductId()}" type="button" name="submit" th:value="${addCart}" class="button" onclick="addCart(this.id)"/>
+										</div>
+									</figure>
+								</div>
 							</div>
 						</div>
 					</div>

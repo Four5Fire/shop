@@ -4,29 +4,6 @@
 <meta charset="utf-8">
 <title>index</title>
 	<script>
-        var isLogin = 1;
-        var userCategory = 0;	//0 represents buyer, 1 represents seller
-        function orangeIcon(elem) {
-            if(isLogin) {
-                if(!userCategory) {
-                    elem.src = '/static/img/购物车鼠标悬浮.png';
-                }
-                else {
-                    elem.src = '/static/img/店铺鼠标悬浮.png';
-                }
-            }
-        }
-        function whiteIcon(elem) {
-            if(isLogin) {
-                if(!userCategory) {
-                    elem.src = '/static/img/购物车.png';
-                }
-                else {
-                    elem.src = '/static/img/店铺.png';
-                }
-            }
-        }
-
         //主页轮播图
         function carouselMap() {
             let elem = document.getElementById('turnImg');
@@ -171,33 +148,17 @@
 	
 	<!-- 新添加的css -->
 	<link th:href="@{/static/css/productDetail_Client.css}" rel="stylesheet" type="text/css" />
-	
+	<link th:href="@{/static/css/headAndTail.css}" rel="stylesheet" type="text/css" />
 
 	
 </head>
 
 <body onload="carouselMap();">
-<div class="nav" th:fragment="user_refresh">
-	<img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" />
-	<!--/*@thymesVar id="user" type="templates"*/-->
-	<div class="nav_right" th:include="nouser::${user}">
-
-	</div>
+<div class="nav" th:include="nouser::${user}"></div>
+<div class="secondNav" th:include="nouser::${search}"></div>
+<div class="thirdNav">
+	<div class="list" th:include="nouser::${ulList}"></div>
 </div>
-	<div class="secondNav">
-		<h1>
-			SUPER MARKET
-		</h1>
-		<div class="searchBox">
-			<input type="text" placeholder="Search for a product..." />
-			<div id="searchWrapper">
-				<img th:src="@{/static/img/搜索.png}" id="rearchButton"/>
-			</div>
-		</div>
-	</div>
-	<div class="thirdNav">
-		
-	</div>
 	
 	<!-- 主体部分 -->
 	
@@ -234,7 +195,7 @@
 				<!-- 添加购物车按钮 -->
 				<div class="snipcart-details agileinfo_single_right_details">
 					<form action="#" method="post">
-						<input type="submit" name="submit" value="添加到购物车" class="button">
+						<input type="button" th:id="${productId}" name="submit" value="添加到购物车" class="button" onclick="addCart(this.id)">
 						
 					</form>
 				</div>
@@ -248,6 +209,7 @@
 				<canvas id="canvas" height="300" width="600"></canvas>
 		
 				<script th:src="@{/static/js/Chart.js}"></script>
+				<script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
 				<script>
 				//var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 				var lineChartData = {
@@ -274,6 +236,22 @@
 					});
 				}
 
+                function addCart(id) {
+                    let url = 'http://127.0.0.1:7000/shop/cartAddProduct/'+id;
+                    console.log(url);
+                    $.ajax({
+                        type:'post',
+                        url: url,
+                        contentType: 'application/json;charset=utf-8',
+                        success: function (data) {
+                            alert(data.desc);
+                        },
+                        error: function () {
+                            alert(data.desc);
+                        }
+                    })
+                }
+
 				</script>
 
 			</div>		
@@ -281,12 +259,7 @@
 		
 	</div>
 
-<div id="bottomInfo">
-	<a href="#">About us</a>
-	<p>
-		Copyright © 2018.DingDang shopping All rights reserved.
-	</p>
-</div>
+<div id="bottomInfo" th:include="nouser::${bottomInfo}"></div>
 
 	
 </body>

@@ -7,6 +7,7 @@
 
         //主页轮播图
         function carouselMap() {
+
             let elem = document.getElementById('turnImg');
             let order = 2;
             elem.style.background = "url('/static/img/back1.jpg') no-repeat";
@@ -24,8 +25,9 @@
         //用户头像跳转
 
 	</script>
+
+
 	<link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" type="text/css">
-	<script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
 	<style>
 		* {
 			margin: 0;
@@ -48,7 +50,11 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
+		.hiddddd{
+			display: none;
+		}
 	</style>
+	<script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
 </head>
 
 <body onload="carouselMap();">
@@ -64,5 +70,6 @@
 	</p>
 </div>
 <div id="bottomInfo" th:include="nouser::${bottomInfo}"></div>
+
 </body>
 </html>

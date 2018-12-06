@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,6 @@ public class IndexController {
             session.setAttribute("type","0");
             modle.addAttribute("user","nologin");
         }
-
         else {
             String type = (String) session.getAttribute("type");
             if (type.equals("1")){
@@ -35,6 +35,8 @@ public class IndexController {
             }
             else if (type.equals("2")){
                 modle.addAttribute("user","shopUser");
+            }else {
+                modle.addAttribute("user","nologin");
             }
         }
         modle.addAttribute("ulList","ulList");
