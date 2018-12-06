@@ -4,38 +4,38 @@ import java.math.BigDecimal;
 
 public class OrderShop {
 
-    private Integer userId;
-    private Integer userName;
-    private Integer userAddress;
+    private String userName;
+    private String userAddress;
     private Integer saleId;
-    private Integer productId;
     private String pro_name;
     private String pro_brand;
     private String pro_img;
     private BigDecimal pro_price_original;
+    private BigDecimal pro_price_sum;
     private Integer pro_num;
+    private String pro_status;
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getUserName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setUserName(Integer userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public Integer getUserAddress() {
+    public BigDecimal getPro_price_sum() {
+        return pro_price_sum;
+    }
+
+    public void setPro_price_sum(BigDecimal pro_price_sum) {
+        this.pro_price_sum = pro_price_sum;
+    }
+
+    public String getUserAddress() {
         return userAddress;
     }
 
-    public void setUserAddress(Integer userAddress) {
+    public void setUserAddress(String userAddress) {
         this.userAddress = userAddress;
     }
 
@@ -45,14 +45,6 @@ public class OrderShop {
 
     public void setSaleId(Integer saleId) {
         this.saleId = saleId;
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
     }
 
     public String getPro_name() {
@@ -95,19 +87,26 @@ public class OrderShop {
         this.pro_num = pro_num;
     }
 
+    public String getPro_status() {
+        return pro_status;
+    }
+
+    public void setPro_status(String pro_status) {
+        this.pro_status = pro_status;
+    }
+
     @Override
     public String toString() {
         return "OrderShop{" +
-                "userId=" + userId +
-                ", userName=" + userName +
-                ", userAddress=" + userAddress +
+                "userName='" + userName + '\'' +
+                ", userAddress='" + userAddress + '\'' +
                 ", saleId=" + saleId +
-                ", productId=" + productId +
                 ", pro_name='" + pro_name + '\'' +
                 ", pro_brand='" + pro_brand + '\'' +
                 ", pro_img='" + pro_img + '\'' +
                 ", pro_price_original=" + pro_price_original +
                 ", pro_num=" + pro_num +
+                ", pro_status='" + pro_status + '\'' +
                 '}';
     }
 }

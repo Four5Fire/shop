@@ -349,7 +349,7 @@
                 let sss = {
                     "saleId":productId
                 };
-                this.productList.splice(index, 1);	//前端
+                // this.productList.splice(index, 1);	//前端
                 sss = JSON.stringify(sss);
                 $.ajax({
                     type:'post',
@@ -358,7 +358,7 @@
                     contentType: 'application/json;charset=utf-8',
                 }).then((data) => {
                     if (data.code == "000001") {
-                        document.getElementById("status").innerText = "已签收";
+                        this.productList[index].pro_status = "已签收"
                     }
                     alert(data.desc);
                     adaptBottom();
