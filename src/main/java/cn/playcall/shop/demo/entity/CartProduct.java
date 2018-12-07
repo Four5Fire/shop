@@ -15,17 +15,6 @@ public class CartProduct {
     private BigDecimal pro_price_original;
     private Integer pro_num;
 
-    public CartProduct(Integer productId, String productName, String brand,String pic, BigDecimal priceLow, BigDecimal priceHigh, BigDecimal priceOriginal, Integer productNum) {
-        this.productId = productId;
-        this.pro_name = productName;
-        this.pro_brand = brand;
-        this.pro_img = pic;
-        this.pro_price_low = priceLow;
-        this.pro_price_high = priceHigh;
-        this.pro_price_original = priceOriginal;
-        this.pro_num = productNum;
-    }
-
     public Integer getProductId() {
         return productId;
     }

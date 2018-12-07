@@ -51,6 +51,7 @@ public class ProductUpdateController {
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("itemType","itemType");
         model.addAttribute("itemList",itemList);
+        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
         model.addAttribute("productPic",product.getPic());
         model.addAttribute("productName",product.getProductName());
         model.addAttribute("productPrice",product.getPriceOriginal());
@@ -59,6 +60,7 @@ public class ProductUpdateController {
         model.addAttribute("productIntro",product.getIntro());
         model.addAttribute("productId",product.getProductId());
         model.addAttribute("bottomInfo","bottomInfo");
+        model.addAttribute("selectItem",product.getItemId());
         return "updateProductInfo";
     }
 

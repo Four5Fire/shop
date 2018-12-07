@@ -65,8 +65,16 @@ public class CartController {
         ArrayList<CartProduct> cartProductArrayList = new ArrayList<>();
         for (Cart c:cartList) {
             Product product = productDao.findByProductId(c.getProductId());
-            CartProduct cartProduct = new CartProduct(product.getProductId(),product.getProductName(),product.getBrand(),
-                    product.getPic(),product.getPriceLow(),product.getPriceHigh(),product.getPriceOriginal(),c.getProductNum());
+
+            CartProduct cartProduct = new CartProduct();
+            cartProduct.setProductId(product.getProductId());
+            cartProduct.setPro_name(product.getProductName());
+            cartProduct.setPro_brand(product.getBrand());
+            cartProduct.setPro_img(product.getPic());
+            cartProduct.setPro_price_low(product.getPriceLow());
+            cartProduct.setPro_price_high(product.getPriceHigh());
+            cartProduct.setPro_price_original(product.getPriceOriginal());
+            cartProduct.setPro_num(c.getProductNum());
             cartProductArrayList.add(cartProduct);
         }
         model.addAttribute("productList",cartProductArrayList);
@@ -87,9 +95,9 @@ public class CartController {
             return new ResponseEntity<JSONObject>(resultJson,HttpStatus.OK);
         }
         UserInfo userInfo = (UserInfo) session.getAttribute("UserInfo");
-        resultJson.put("desc","商品成功添加至购物车");
+        resultJson.put("desc","商品添加购物车失败");
         Product product = productDao.findByProductId(Integer.parseInt(productId));
-        Cart cart = cartDao.findByProductId(Integer.parseInt(productId));
+        Cart cart = cartDao.findByUserIdAndProductId(userInfo.getUserId(),Integer.parseInt(productId));
         if (cart != null){
             cart.setProductNum(cart.getProductNum()+1);
             cartDao.flush();

@@ -18,6 +18,7 @@ public class LogoutController {
         HttpSession session = request.getSession();
         session.invalidate();
         model.addAttribute("user","nologin");
+        model.addAttribute("type","0");
         return "redirect:index";
     }
 }

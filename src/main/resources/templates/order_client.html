@@ -304,7 +304,7 @@
         </table>
     </div>
     <div class="cart-product-info">
-        <a class="keep-shopping" href="http://120.79.70.13:7000/shop/index"><span></span>继续购物</a>
+        <a class="keep-shopping" href="http://127.0.0.1:7000/shop/index"><span></span>继续购物</a>
     </div>
 </div>
 <div id="bottomInfo" th:include="nouser::${bottomInfo}"></div>
@@ -353,7 +353,7 @@
                 sss = JSON.stringify(sss);
                 $.ajax({
                     type:'post',
-                    url:"http://120.79.70.13:7000/shop/receiveOrder",
+                    url:"http://127.0.0.1:7000/shop/receiveOrder",
                     data:sss,
                     contentType: 'application/json;charset=utf-8',
                 }).then((data) => {

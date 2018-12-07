@@ -57,7 +57,7 @@ public class UserUpdateController {
         model.addAttribute("ulList","ulList");
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("itemList",itemList);
-        model.addAttribute("productsApi","http://120.79.70.13:7000/shop/productsIndex/");
+        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
         model.addAttribute("username",userInfo.getUserName());
         model.addAttribute("tele",userInfo.getTele());
         model.addAttribute("userPwd",userInfo.getUserpwd());
