@@ -35,7 +35,7 @@
         SUPER MARKET
     </h1>
     <div class="searchBox">
-        <input type="text" id="searchInput" placeholder="Search for a product..." />
+        <input type="text" id="searchInput" th:value="${result}" placeholder="Search for a product..." />
         <div id="searchWrapper">
             <img th:src="@{/static/img/搜索.png}" id="rearchButton" onclick="searchProduct()"/>
         </div>

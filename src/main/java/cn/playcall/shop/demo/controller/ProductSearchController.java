@@ -65,6 +65,8 @@ public class ProductSearchController {
 
         List<Product> productList = productDao.findAllByProductName((String) session.getAttribute("searchProductName"));
 
+        model.addAttribute("result",session.getAttribute("searchProductName"));
+
         model.addAttribute("productList",productList);
 
         return "search";
