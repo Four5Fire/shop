@@ -92,6 +92,23 @@ public class FavorController {
     public ResponseEntity<JSONObject> addFavor(HttpServletRequest request, @PathVariable String productId){
         JSONObject resultJson = new JSONObject();
         HttpSession session = request.getSession();
+        if (session.getAttribute("type") == null){
+            session.setAttribute("type","0");
+            resultJson.put("desc","请登录");
+            return new ResponseEntity<JSONObject>(resultJson, HttpStatus.OK);
+        }
+        else {
+            String type = (String) session.getAttribute("type");
+            if (type.equals("1")){
+            }
+            else if (type.equals("2")){
+                resultJson.put("desc","请切换普通用户账号");
+                return new ResponseEntity<JSONObject>(resultJson, HttpStatus.OK);
+            }else {
+                resultJson.put("desc","请登录");
+                return new ResponseEntity<JSONObject>(resultJson, HttpStatus.OK);
+            }
+        }
         UserInfo userInfo = (UserInfo) session.getAttribute("UserInfo");
         Favor favor = favorDao.findByUserIdAndProductId(userInfo.getUserId(),Integer.parseInt(productId));
         if (favor != null){
