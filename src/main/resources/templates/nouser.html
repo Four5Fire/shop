@@ -34,11 +34,33 @@
         SUPER MARKET
     </h1>
     <div class="searchBox">
-        <input type="text" placeholder="Search for a product..." />
+        <input type="text" id="searchInput" placeholder="Search for a product..." />
         <div id="searchWrapper">
-            <img th:src="@{/static/img/搜索.png}" id="rearchButton"/>
+            <img th:src="@{/static/img/搜索.png}" id="rearchButton" onclick="searchProduct()"/>
         </div>
     </div>
+    <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+    <script>
+        function searchProduct() {
+            let sss = {
+                "productName":document.getElementById("searchInput").value
+            }
+            sss = JSON.stringify(sss);
+            $.ajax({
+                type:'post',
+                url:"http://127.0.0.1:7000/shop/searchProduct",
+                data:sss,
+                async:false,
+                contentType: 'application/json;charset=utf-8',
+                success:function () {
+                    window.location.href = "http://127.0.0.1:7000/shop/searchIndex";
+                },
+                error:function () {
+
+                }
+            })
+        }
+    </script>
 </div>
 <div th:fragment="bottomInfo">
     <a href="http://127.0.0.1:7000/shop/aboutUs">About us</a>
