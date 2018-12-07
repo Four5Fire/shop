@@ -33,7 +33,6 @@ public class ProductsItemController {
         switch (type){
             case 0:
                 model.addAttribute("user","nologin");
-                model.addAttribute("addCart","添加至购物车");
                 break;
             case 1:
                 model.addAttribute("user","user");

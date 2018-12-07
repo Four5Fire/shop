@@ -62,6 +62,7 @@ public class RegistryController {
             userInfo.setUserScore(0);
             userInfo.setUserLevel(1);
             userInfo.setRegisDate(getCutTime());
+            userInfo.setUserPic("/static/img/李金洋.jpg");
             userInfo = userDao.save(userInfo);
         }
         else if (type == 2){

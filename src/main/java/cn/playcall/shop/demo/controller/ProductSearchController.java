@@ -56,6 +56,8 @@ public class ProductSearchController {
                 model.addAttribute("user","nologin");
             }
         }
+        model.addAttribute("addCart","添加至购物车");
+        model.addAttribute("urlApi","http://120.79.70.13:7000/shop/cartAddProduct/");
         model.addAttribute("ulList","ulList");
         model.addAttribute("search","search");
         model.addAttribute("bottomInfo","bottomInfo");
@@ -63,7 +65,7 @@ public class ProductSearchController {
         model.addAttribute("itemList",itemList);
         model.addAttribute("productsApi","http://120.79.70.13:7000/shop/productsIndex/");
 
-        List<Product> productList = productDao.findAllByProductName((String) session.getAttribute("searchProductName"));
+        List<Product> productList = productDao.findAllByProductNameLike("%"+(String) session.getAttribute("searchProductName")+"%");
 
         model.addAttribute("result",session.getAttribute("searchProductName"));
 
