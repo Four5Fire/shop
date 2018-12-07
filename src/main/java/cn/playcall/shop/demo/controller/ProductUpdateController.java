@@ -79,6 +79,12 @@ public class ProductUpdateController {
             history.setHistory(getCutTime());
 
             product.setPriceOriginal(new BigDecimal(updateJson.getString("productPrice")));
+            if (product.getPriceOriginal().compareTo(product.getPriceLow())==-1){
+                product.setPriceLow(product.getPriceOriginal());
+            }
+            if (product.getPriceOriginal().compareTo(product.getPriceHigh())==1){
+                product.setPriceHigh(product.getPriceOriginal());
+            }
             product.setBrand(updateJson.getString("productBrand"));
             product.setItemId(Integer.parseInt(updateJson.getString("productItem")));
             product.setStock(Integer.parseInt(updateJson.getString("productNum")));
