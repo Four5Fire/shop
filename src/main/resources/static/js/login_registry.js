@@ -18,13 +18,13 @@ function login_check() {
     console.log(sss);
     $.ajax({
         type:'POST',
-        url:'http://127.0.0.1:7000/shop/loginCheck',
+        url:'http://120.79.70.13:7000/shop/loginCheck',
         data:sss,
         contentType: 'application/json;charset=utf-8',
         success: function (data) {
             console.log(data);
             if (data.code == "000000"){
-                window.location.href = 'http://127.0.0.1:7000/shop/index';
+                window.location.href = 'http://120.79.70.13:7000/shop/index';
             }else {
                 alert(data.desc);
             }
@@ -65,7 +65,7 @@ function reg_check() {
 
     $.ajax({
         type:'post',
-        url:"http://127.0.0.1:7000/shop/registryCheck",
+        url:"http://120.79.70.13:7000/shop/registryCheck",
         data:sss,
         contentType: 'application/json;charset=utf-8',
         success: function (data) {
@@ -94,7 +94,7 @@ function reg_success() {
             // let toRemove = document.body.children;
             // document.body.removeChild(toRemove[toRemove.length - 1]);
             // clearInterval(intervalId);
-            window.location.href = 'http://127.0.0.1:7000/shop/login';
+            window.location.href = 'http://120.79.70.13:7000/shop/login';
         }
         msg.innerHTML = '注册成功，' + totalTime + '秒后将跳转到登录页面';
 
