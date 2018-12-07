@@ -62,22 +62,22 @@ public class OrderController {
 
             if (sale.getState() == 0){
                 orderClient.setPro_status("等待卖家发货");
-                orderClient.setFbApi("http://127.0.0.1:7000/shop/commentClient/");
+                orderClient.setFbApi("http://120.79.70.13:7000/shop/commentClient/");
                 orderClient.setFeedbackApi("#");
                 orderClient.setFeedback("未评价");
             }else if (sale.getState() == 1){
-                orderClient.setFbApi("http://127.0.0.1:7000/shop/commentClient/");
+                orderClient.setFbApi("http://120.79.70.13:7000/shop/commentClient/");
                 orderClient.setFeedbackApi("#");
                 orderClient.setFeedback("未评价");
                 orderClient.setPro_status("待签收");
             }else if (sale.getState() == 2){
                 if (comment != null){
                     //评价入口
-                    orderClient.setFeedbackApi("http://127.0.0.1:7000/shop/commentLook/"+orderClient.getProductId());
+                    orderClient.setFeedbackApi("http://120.79.70.13:7000/shop/commentLook/"+orderClient.getProductId());
                     orderClient.setFeedback("查看评价");
                 }else {
                     //查看评价入口
-                    orderClient.setFeedbackApi("http://127.0.0.1:7000/shop/commentClient/"+orderClient.getProductId());
+                    orderClient.setFeedbackApi("http://120.79.70.13:7000/shop/commentClient/"+orderClient.getProductId());
                     orderClient.setFeedback("立即评价");
                 }
                 orderClient.setPro_status("已签收");
@@ -143,7 +143,7 @@ public class OrderController {
                         orderShop.setFeedbackApi("#");
                         orderShop.setFeedback("等待买家评价");
                     }else {
-                        orderShop.setFeedbackApi("http://127.0.0.1:7000/shop/commentLook/"+s.getSaleId());
+                        orderShop.setFeedbackApi("http://120.79.70.13:7000/shop/commentLook/"+s.getSaleId());
                         orderShop.setFeedback("查看用户评价");
                     }
                 }

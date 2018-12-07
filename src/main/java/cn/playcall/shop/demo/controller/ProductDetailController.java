@@ -67,7 +67,7 @@ public class ProductDetailController {
         model.addAttribute("productCount", saleDao.countAllByProductId(Integer.parseInt(productId)));
         model.addAttribute("productPrice",product.getPriceOriginal());
         model.addAttribute("bottomInfo","bottomInfo");
-        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
+        model.addAttribute("productsApi","http://120.79.70.13:7000/shop/productsIndex/");
         List<History> historyList = historyDao.findAllByProductId(product.getProductId());
         model.addAttribute("historyList",historyList);
 

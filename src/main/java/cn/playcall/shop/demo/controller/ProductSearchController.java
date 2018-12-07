@@ -61,7 +61,7 @@ public class ProductSearchController {
         model.addAttribute("bottomInfo","bottomInfo");
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("itemList",itemList);
-        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
+        model.addAttribute("productsApi","http://120.79.70.13:7000/shop/productsIndex/");
 
         List<Product> productList = productDao.findAllByProductName((String) session.getAttribute("searchProductName"));
 

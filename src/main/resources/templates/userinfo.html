@@ -19,8 +19,8 @@
 			<div class='container'>
 				<!--/*@thymesVar id="pic" type="templates"*/-->
 				<img id="userPic" th:src="@{${pic}}" alt="img">
-					<h3 class="test">Chris Adam</h3>
-					<p class="test" >sir</p>
+					<h3 class="test" th:text="${userName}"></h3>
+					<p class="test" th:text="${userGender}"></p>
 				<div class="userinfo w3-banner-grid-right">
 					<div class="w3-banner-text">
 						<h4>您的一次购买，就是我们的一次成长</h4>

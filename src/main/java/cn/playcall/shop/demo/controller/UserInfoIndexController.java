@@ -50,9 +50,11 @@ public class UserInfoIndexController {
         model.addAttribute("level",userInfo.getUserLevel());
         model.addAttribute("search","search");
         model.addAttribute("ulList","ulList");
+        model.addAttribute("userName",userInfo.getUserName());
+        model.addAttribute("userGender",userInfo.getGender());
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("itemList",itemList);
-        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
+        model.addAttribute("productsApi","http://120.79.70.13:7000/shop/productsIndex/");
         model.addAttribute("bottomInfo","bottomInfo");
         model.addAttribute("pic",userInfo.getUserPic());
         return "userinfo";

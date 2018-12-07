@@ -58,6 +58,7 @@ public class RegistryController {
             userInfo.setUserName(registryJson.getString("user_name"));
             userInfo.setUserpwd(registryJson.getString("user_pwd"));
             userInfo.setTele(registryJson.getString("tele"));
+            userInfo.setGender("男");
             userInfo.setUserScore(0);
             userInfo.setUserLevel(1);
             userInfo.setRegisDate(getCutTime());

@@ -62,8 +62,8 @@ public class CommentController {
         model.addAttribute("ulList","ulList");
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("itemList",itemList);
-        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
-        model.addAttribute("productDetail","http://127.0.0.1:7000/shop/productDetail/"+product.getProductId());
+        model.addAttribute("productsApi","http://120.79.70.13:7000/shop/productsIndex/");
+        model.addAttribute("productDetail","http://120.79.70.13:7000/shop/productDetail/"+product.getProductId());
         model.addAttribute("productPic",product.getPic());
         model.addAttribute("productNum",sale.getProductNum());
         model.addAttribute("productSumPrice",sale.getSumPrice());
@@ -119,8 +119,8 @@ public class CommentController {
         model.addAttribute("ulList","ulList");
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("itemList",itemList);
-        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
-        model.addAttribute("productDetail","http://127.0.0.1:7000/shop/productDetail/"+product.getProductId());
+        model.addAttribute("productsApi","http://120.79.70.13:7000/shop/productsIndex/");
+        model.addAttribute("productDetail","http://120.79.70.13:7000/shop/productDetail/"+product.getProductId());
         model.addAttribute("productPic",product.getPic());
         model.addAttribute("productNum",sale.getProductNum());
         model.addAttribute("productSumPrice",sale.getSumPrice());
