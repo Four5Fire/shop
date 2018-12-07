@@ -1,0 +1,455 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>wallmart</title>
+<link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" type="text/css">
+<style type='text/css'>
+* {
+    margin: 0;
+    padding: 0;
+}
+/*导航栏*/
+.nav {
+    background: rgb(51, 51, 51);
+    height: 60px;
+}
+.nav_right {
+    height: 60px;
+    position: absolute;
+    left: 70%;
+    display: inline-flex;
+    margin: auto;
+}
+.nav_right > a {
+    width: 120px;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: 1.1em;
+    font-family: "serif";
+    line-height: 60px;
+    vertical-align: middle;
+}
+.nav_right > a:hover {
+    color: rgb(254, 145, 38);
+}
+.nav_right > img {
+    height: 30px;
+    width: auto;
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+/*导航栏下面的元素*/
+.secondNav {
+    height: 120px;
+    width: 100%;
+    background: rgb(245, 245, 245);
+    position: relative;
+}
+.secondNav > h1 {
+    color: rgb(254, 145, 38);
+    position: absolute;
+    font-size: 2.5em;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.searchBox {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translate(0%, -50%);
+}
+.searchBox > input {
+    height: 40px;
+    font-size: 1.0em;
+    border: solid 1px #444;
+    padding: 0 5px 0 5px;
+    vertical-align: middle;
+}
+#searchWrapper {
+    background: rgb(245, 145, 38);
+    border-radius: 5px;
+    height: 45px;
+    width: 45px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+#searchWrapper:hover {
+    background: rgb(51, 51, 51);
+}
+#rearchButton {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 50%;
+}
+
+/*第三行布局*/
+.thirdNav {
+    width: 100%;
+    height: 50px;
+    background: rgb(245, 145, 38);
+}
+
+/*主页轮播图*/
+#turnImg {
+    width: 100%;
+    height: 250px;
+    position: relative;
+    -webkit-transition: all 1.5s;
+}
+#turnImg > p {
+    position: absolute;
+    text-align: center;
+    color: #eee;
+    font-size: 3.0em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*底部栏*/
+#bottomInfo {
+    position: relative;
+    bottom:0px;
+    width: 100%;
+    height: 60px;
+    background: rgb(42, 42, 42);
+}
+#bottomInfo > p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #eee;
+}
+/*提交表单*/
+/* Basic Grey */
+.basic-grey {
+    margin-top:5%;
+    margin-bottom: 5%;
+    margin-right: AUTO;
+    MARGIN-LEFT:AUTO;
+    max-width: 550px;
+    background: #F7F7F7;
+    padding: 25px 15px 25px 10px;
+    font: 12px Georgia, "Times New Roman", Times, serif;
+    color: #888;
+    text-shadow: 1px 1px 1px #FFF;
+    border:1px solid #E4E4E4;
+    }
+    .basic-grey h1 {
+    font-size: 25px;
+    padding: 0px 0px 10px 40px;
+    display: block;
+    border-bottom:1px solid #E4E4E4;
+    margin: -10px -15px 30px -10px;;
+    color: #888;
+    }
+    .basic-grey h1>span {
+    display: block;
+    font-size: 11px;
+    }
+    .basic-grey label {
+    display: block;
+    margin: 0px;
+    }
+    .basic-grey label>span {
+    float: left;
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+    margin-top: 20px;
+    color: #888;
+    }
+    .basic-grey input[type="text"], .basic-grey input[type="email"], .basic-grey textarea, .basic-grey select {
+    border: 1px solid #DADADA;
+    color: #888;
+    height: 30px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 70%;
+    font-size: 12px;
+    line-height:15px;
+    box-shadow: inset 0px 1px 4px #ECECEC;
+    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+    }
+    .basic-grey input[type="file"] {
+    height: 30px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 70%;
+    font-size: 12px;
+    line-height:15px;
+    box-shadow: inset 0px 1px 4px #ECECEC;
+    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+    }
+    .basic-grey textarea{
+    padding: 5px 3px 3px 5px;
+    }
+    .basic-grey select {
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width: 70%;
+    height: 35px;
+    line-height: 25px;
+    margin-top:12px;
+    }
+    .basic-grey textarea{
+    height:100px;
+    }
+    .basic-grey .button {
+    background: #E27575;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    box-shadow: 1px 1px 5px #B6B6B6;
+    border-radius: 3px;
+    text-shadow: 1px 1px 1px #9E3F3F;
+    cursor: pointer;
+    }
+    .basic-grey .button:hover {
+    background: #CF7A7A
+    }
+/*图品预览*/
+#test-image-preview{
+    text-align: center;
+    border:1px solid #ccc;
+    width:80%;
+    height:200px;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+    .error{ 
+    width:200px; 
+    float:right;
+    font-size:0.6em;
+    height:5px; 
+    line-height:5px; 
+    color:#F00; 
+    } 
+   .success{ 
+    width:200px; 
+    float:right;
+    font-size:0.6em;
+    height:5px; 
+    line-height:5px; 
+    color:#096; 
+    } 
+    .default{ 
+    width:200px; 
+    font-size:0.6em;
+    height:5px; 
+    line-height:5px; 
+    float:right;
+    color:#999; 
+    margin-bottom:3px;
+    }  
+
+</style>
+    <script type="text/javascript">
+    function checkform(){ 
+
+    var brandtip  = checkbrand();       
+    var nametip  = checkproname();
+    var pricetip  = checkprice(); 
+    var commenttip=checkcomment();
+    return  brandtip && nametip && pricetip && commenttip ;
+  } 
+
+  //验证用户名   
+  function checkproname(){ 
+  var proname = document.getElementById('name');
+  var errname = document.getElementById('nameErr');  
+  if(proname.value.length == 0){ 
+    errname.innerHTML="商品名不能为空" 
+    errname.className="error" 
+    return false; 
+    } 
+if(proname.value.length > 12){ 
+    errname.innerHTML="商品名不能超过12位" 
+    debugger;
+    errname.className="error" 
+    return false; 
+    } 
+   else{ 
+     errname.innerHTML="OK" 
+     errname.className="success"; 
+     return true; 
+     } ;
+  }
+
+ function checkbrand(){ 
+  var probrand = document.getElementById('BRAND');
+  var branderr = document.getElementById('brandErr');  
+  if(probrand.value.length == 0){ 
+    branderr.innerHTML="品牌名不能为空" 
+    branderr.className="error" 
+    return false; 
+    } 
+if(probrand.value.length > 12){ 
+    branderr.innerHTML="品牌名不能超过12位" 
+    branderr.className="error" 
+    return false; 
+    } 
+   else{ 
+     branderr.innerHTML="OK" 
+     branderr.className="success"; 
+     return true; 
+     } 
+  } ;
+
+
+
+   function checkprice(){ 
+    var proprice = document.getElementById('price');
+    var priceerr = document.getElementById('priceerr'); 
+    if(proprice.value.length == 0){ 
+        priceerr.innerHTML="价格不能为空" 
+        priceerr.className="error" 
+        return false; 
+        } 
+    if(proprice.value.length > 8){ 
+        priceerr.innerHTML="输入位数不超过八位" 
+        priceerr.className="error" 
+        return false; 
+        } 
+    else{ 
+        priceerr.innerHTML="OK" 
+        priceerr.className="success"; 
+        return true; 
+        } 
+  } ;
+
+  function checkcomment(){ 
+    var prodescribe = document.getElementById('DESCRIBE');
+    var deserr = document.getElementById('describeErr'); 
+    if(prodescribe.value.length == 0){ 
+        deserr.innerHTML="价格不能为空" 
+        deserr.className="error" 
+        return false; 
+        } 
+    if(prodescribe.value.length > 8){ 
+        deserr.innerHTML="输入位数不超过八位" 
+        deserr.className="error" 
+        return false; 
+        } 
+    else{ 
+        deserr.innerHTML="OK" 
+        deserr.className="success"; 
+        return true; 
+        } 
+  }
+
+    function submitForm() {
+        var formData = new FormData(document.getElementById("addProductForm"));
+        formData.append("fileName",document.getElementById("fileId").files[0].name);
+        $.ajax({
+            url : "shop/uploadProduct",
+            type : 'POST',
+            data : formData,
+            processData: false,
+            contentType: false,
+            // contentType: 'application/json;charset=utf-8',
+            cache: false,
+            async: false,
+            success: function (resultData) {
+                alert(resultData.desc);
+                console.log("成功");
+                window.location.href = "shop/store";
+            },
+            error: function (resultData) {
+                console.log(resultData);
+                alert(resultData.desc);
+                console.log("失败");
+            }
+        });
+    }
+</script>
+
+
+    <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+	</head>
+
+<body>
+<div class="nav" th:include="nouser::${user}">
+</div>
+<div class="secondNav" th:include="nouser::${search}"></div>
+<div class="thirdNav">
+    <div class="list" th:include="nouser::${ulList}"></div>
+</div>
+
+    <form id="addProductForm" enctype="multipart/form-data"  action="" method="post" class="basic-grey">
+    <h1>ADD PRODUCT
+    <span>Please fill all the texts in the fields.</span>
+    </h1>
+    <span class="default" id="nameErr">请输入商品名不超过12位</span> 
+    <label>
+    <span>PRODUCT NAME :</span>
+    <input id="name" type="text" name="name" placeholder="PRODUCT Full Name" />
+    </label>
+    
+    <span class="default" id="brandErr">请输入品牌不超过12位</span> 
+    <label>
+    <span>BRAND:</span>
+    <input id="BRAND" type="text" name="brand" placeholder="产品品牌" />
+    </label>
+
+    <span class="default" id="priceerr">产品定价0-100000.00元支持小数点后两位</span> 
+    <label>
+    <span>定价:</span>
+    <input id="price" type="text" name="price" placeholder="阿拉伯数字单位RMB" />
+    </label>
+
+    <span class="default" id="">   请上传商品图片  </span> 
+    <label>
+    <span>上传商品图片:</span>
+
+        <input id="fileId" type="file" name="file">
+    </label>
+
+    <span class="default"> 上货数量</span>
+    <label>
+        <span>上货数量：</span>
+        <input id="stock" type="text" name="stock" placeholder="上货数量" />
+    </label>
+
+    <span class="default" id="describeErr">描述您的商品 不超过90个字符</span> 
+    <label>
+    <span>DESCRIBE :</span>
+    <textarea id="DESCRIBE" style="resize:none;" name="DESCRIBE" placeholder="请描述你的商品"></textarea>
+    </label>
+    <label>
+    <span>Subject :</span><select name="selection" th:include="nouser::${itemType}">
+    </select>
+    </label>
+    <label>
+   
+    <span>&nbsp;</span>
+        <input type="button" class="button" value="Send" onclick="submitForm()"/>
+    </label>
+    </form>
+
+
+<div id="bottomInfo" th:include="nouser::${bottomInfo}"></div>
+</body>
+</html>

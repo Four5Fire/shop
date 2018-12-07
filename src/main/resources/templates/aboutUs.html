@@ -1,0 +1,146 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>about us</title>
+	<link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" type="text/css" />
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#entirePart {
+			width: 1250px;
+			height: 650px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-left: -625px;
+			margin-top: -300px;
+			background: #ddd;
+		}
+		.onePart {
+			height: 250px;
+			margin: 50px 50px 50px 50px;
+			font-size: 0;
+		}
+		#textDesc {
+			width: 850px;
+			height: 250px;
+			background: #eee;
+			display: inline-block;
+			font-size: 16px;
+			font-weight: normal;
+			color: rgb(0, 180, 225);
+			position: absolute;
+		}
+		.memberInfo {
+			margin-right: 50px;
+			display: inline-block;
+			width: 250px;
+			height: 250px;
+			position: relative;
+			overflow: hidden;
+		}
+		.memberInfo > img {
+			width: 250px;
+			height: 250px;
+		}
+		.memberInfo:hover img{
+			transform: scale(1.3);
+			-webkit-transition: all 1s;
+		}
+		.memberInfo:hover .memberTextInfo {
+			bottom: 0;
+		}
+		.memberTextInfo {
+			bottom: -90px;
+			width: 250px;
+			height: 90px;
+			position: absolute;
+			background: rgba(10, 10, 10, 0.3);
+			-webkit-transition: all .5s;
+			color: #eee;
+			font-size: 18px;
+		}
+		.memberTextInfo > h2 {
+			padding: 10px;
+			font-size: 1.3em;
+		}
+		.memberTextInfo > p {
+			padding: 0 10px;
+		}
+	</style>
+</head>
+
+<body>
+<div class="nav" th:include="nouser::${user}"></div>
+	<div id="entirePart">
+		<div class="onePart">
+			<div class="memberInfo">
+				<img src="/static/img/李金洋.jpg" >
+				<div class="memberTextInfo">
+					<h2>
+						李金洋
+					</h2>
+					<p>
+						项目负责人
+					</p>
+				</div>
+			</div>
+			<div id="textDesc">
+				<h1 style="padding: 30px; display: block;">OUR TEAM</h1>
+				<p style="color: #111; padding: 30px;">
+					For the long term, only the spoken language can transmit information, and the written language with short message can be used to convey information. The language of the system has become an important tool for the separation of people and animals.
+				</p>
+			</div>
+		</div>
+		<div class="onePart">
+			<div class="memberInfo">
+				<img src="/static/img/陶润洲.jpg" >
+				<div class="memberTextInfo">
+					<h2>
+						陶润洲
+					</h2>
+					<p>
+						搬砖负责人
+					</p>
+				</div>
+			</div>
+			<div class="memberInfo">
+				<img src="/static/img/曹俊燚.jpg" >
+				<div class="memberTextInfo">
+					<h2>
+						曹俊燚
+					</h2>
+					<p>
+						后端负责人
+					</p>
+				</div>
+			</div>
+			<div class="memberInfo">
+				<img src="/static/img/何钺.jpg" >
+				<div class="memberTextInfo">
+					<h2>
+						何钺
+					</h2>
+					<p>
+						页面负责人
+					</p>
+				</div>
+			</div>
+			<div class="memberInfo" style="margin: 0;">
+				<img src="/static/img/刘伟杰.jpg" >
+				<div class="memberTextInfo">
+					<h2>
+						刘伟杰
+					</h2>
+					<p>
+						页面目负责人
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

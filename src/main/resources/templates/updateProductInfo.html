@@ -1,0 +1,386 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>modifying information</title>
+<link rel="stylesheet" th:href="@{/static/css/headAndTail.css}" type="text/css">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		/*导航栏*/
+		.nav {
+			background: rgb(51, 51, 51);
+			height: 60px;
+		}
+		.nav_right {
+			height: 60px;
+			position: absolute;
+			left: 70%;
+			display: inline-flex;
+			margin: auto;
+		}
+		.nav_right > a {
+			width: 120px;
+			text-decoration: none;
+			text-align: center;
+			color: #fff;
+			font-size: 1.1em;
+			font-family: "serif";
+			line-height: 60px;
+			vertical-align: middle;
+		}
+		.nav_right > a:hover {
+			color: rgb(254, 145, 38);
+		}
+		.nav_right > img {
+			height: 30px;
+			width: auto;
+			margin-top: 15px;
+			margin-left: 30px;
+		}
+		
+		/*导航栏下面的元素*/
+		.secondNav {
+			height: 120px;
+			width: 100%;
+			background: rgb(245, 245, 245);
+			position: relative;
+		}
+		.secondNav > h1 {
+			color: rgb(254, 145, 38);
+			position: absolute;
+			font-size: 2.5em;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		.searchBox {
+			position: absolute;
+			right: 10%;
+			top: 50%;
+			transform: translate(0%, -50%);
+		}
+		.searchBox > input {
+			height: 40px;
+			font-size: 1.0em;
+			border: solid 1px #444;
+			padding: 0 5px 0 5px;
+			vertical-align: middle;
+		}
+		#searchWrapper {
+			background: rgb(245, 145, 38);
+			border-radius: 5px;
+			height: 45px;
+			width: 45px;
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		#searchWrapper:hover {
+			background: rgb(51, 51, 51);
+		}
+		#rearchButton {
+			position: absolute;
+			transform: translate(-50%, -50%);
+			width: 30px;
+			height: 30px;
+			top: 50%;
+			left: 50%;
+		}
+		
+		/*第三行布局*/
+		.thirdNav {
+			width: 100%;
+			height: 50px;
+			background: rgb(245, 145, 38);
+		}
+
+		.list ul{
+			text-align: center;
+		}
+
+		.list ul li{
+			display: inline-block;
+			margin-top: 15px;
+			margin-left: 50px;
+		}
+
+		.list ul li a{
+			color: white;
+			text-decoration: none;
+			font-size: 17px;
+			font-weight: bold;
+		}
+
+		.list ul li a:hover{
+			font-style: italic;
+		}
+
+		.t1{
+			padding: 5em 0;
+			padding-bottom: 80%;
+		}
+
+		.t2 {
+			padding-right: 15%;
+			padding-left: 15%;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.t3{
+			position: relative;
+			min-height: 1px;
+			padding-right: 15px;
+			padding-left: 15px;
+			width: 100%;
+			float: none;
+		}
+
+		.t4{
+			margin-top: 40px;
+		}
+
+		.one{
+			float: left;
+			width: 100%;
+			position: relative;
+		 	min-height: 1px;
+		 	padding-right: 15px;
+		 	padding-left: 15px;
+		}
+
+		.two {
+		    border: 1px solid #c0bebe;
+		}
+
+		.two figure {
+			position: relative;
+		}
+
+		.three{
+			position: relative;
+		    display: block;
+		    background: #FFFFFF;
+		    padding: .5em;
+		}
+
+		.three:hover .six input.button,.six input.button:hover{
+		    background: #fe9126;
+		}
+
+		.four{
+			padding: 1em;
+		}
+
+		.four img{
+			width: 400px;
+			height: 400px;
+			margin: 0 auto;
+			max-width: 100% ! important ;
+
+		}
+
+		.four p{
+			color:#212121;
+			margin:1.5em 0 1em;
+			line-height:1.5em;
+			text-transform:capitalize;
+			font-size:14px;
+			text-align: center;
+		}
+		.four h4{
+			font-weight:600;
+			font-size:1em;
+			color:#212121;
+			text-align: center;
+		}
+		.four h4 span{
+			font-weight:300;
+			text-decoration:line-through;
+			padding-left:1em;
+		}
+
+		.five a{
+			display: block;
+		    text-align: center;
+		}
+
+		.six {
+		    text-align: center;
+			margin: 1.5em auto 1em;
+		    width:77%;
+		}
+
+		.six input.button {
+		    font-size: 14px;
+		    color: #fff;
+		    background: #3399cc;
+		    text-decoration: none;
+		    position: relative;
+		    border: none;
+		    border-radius: 0;
+		    width: 40%;
+		    height: 50px;
+		    text-transform: uppercase;
+		    padding: .5em 0;
+		    outline: none;
+		    margin-top: 20px;
+		}
+
+		.setPrice, .setName{
+			margin-top: 10px;
+			width: 400px;
+			height: 40px;
+			margin-left: 80px;
+			margin-bottom: 22px;
+			float: left;
+			font-weight:600;
+			font-size:1em;
+			color:#212121;
+			text-align: center;
+		}
+
+		.surePrice, .sureName{
+			float: left;
+			margin-left: 20px;
+			margin-top: 10px;
+			height: 48px;
+			width: 150px;
+			font-weight: 600;
+		}
+
+		.labelName{
+			float: left;
+			color: #808080;
+			margin-top: 17px;
+			margin-left: 20%;
+		}
+
+		.name{
+			padding: 55px;
+		}
+
+		.setIn{
+			height: 200px;
+		}
+		.select{
+			float: left;
+			margin-top: 15px;
+			width: 400px;
+			height: 40px;
+			margin-left: 79px;
+			color:#212121;
+			font-weight:600;
+			font-size:1em;
+			text-align: center;
+		}
+	</style>
+	<script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+</head>
+
+<body onResize="adaptBottom();">
+<div class="nav" th:include="nouser::${user}"></div>
+<div class="secondNav" th:include="nouser::${search}"></div>
+<div class="thirdNav">
+	<div class="list" th:include="nouser::${ulList}"></div>
+</div>
+
+	<div class="t1">
+		<div class="t2">
+			<div class="t3">
+				<div class="t4">
+					<div class="one">
+						<div class="two">
+							<div class="three">
+								<div class=four>
+									<figure>
+										<div class="five">
+											<a href="#"><img title=" " alt=" " th:src="@{${productPic}}"></a>
+											<div class="name">
+												<label class="labelName">商品名称</label><input type="text" id="pName" class="setName" th:value="${productName}">
+											</div>
+											<div class="name">
+												<label class="labelName">商品价格</label><input type="text" id="pPrice" class="setName" th:value="${productPrice}">
+											</div>
+											<div class="name">
+												<label class="labelName">商品品牌</label><input type="text" id="pBrand" class="setName" th:value="${productBrand}">
+											</div>
+											<div class="name">
+												<label class="labelName">商品类别</label><select id="pItem" name="selection" class="select" th:include="nouser::${itemType}"></select>
+											</div>
+											<div class="name">
+												<label class="labelName">商品库存</label><input type="text" id="pNum" class="setName" th:value="${productNum}">
+											</div>
+											</div><div class="name">
+												<label class="labelName labelIn">商品简介</label><input type="text" id="pIntro" class="setName setIn" th:value="${productIntro}">
+											</div>
+										</div>
+										<div class="six">
+											<input th:id="${productId}" type="button" name="submit" value="修改" class="button" onclick="submitProductUpdate(this.id)">
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div id="bottomInfo" th:include="nouser::${bottomInfo}"></div>
+
+</body>
+
+	<script>
+
+		window.onload=function adaptBottom() {
+			let bottomElement = document.getElementById('bottomInfo');
+			if(document.documentElement.offsetHeight - 60 > document.documentElement.clientHeight) {	//底部栏脱离底部
+				bottomElement.style.position = 'relative';
+			}
+			else {
+				bottomElement.style.position = 'absolute';
+				bottomElement.style.bottom = '0px';
+			}
+		}
+
+		function submitProductUpdate(id) {
+			let pName = document.getElementById("pName").value;
+			let pPrice = document.getElementById("pPrice").value;
+			let pBrand = document.getElementById("pBrand").value;
+			let pItem = document.getElementById("pItem").value;
+			let pNum = document.getElementById("pNum").value;
+			let pIntro = document.getElementById("pIntro").value;
+			let url = "shop/updateProduct/"+id;
+
+			let sss = {
+			    "productName":pName,
+				"productPrice":pPrice,
+				"productBrand":pBrand,
+				"productItem":pItem,
+				"productNum":pNum,
+				"productIntro":pIntro
+			}
+
+			sss = JSON.stringify(sss);
+			console.log(sss);
+			$.ajax({
+				type:'post',
+				url:url,
+                data:sss,
+                contentType: 'application/json;charset=utf-8',
+                success: function (data) {
+                    alert(data.desc);
+                    window.location.href="shop/store"
+                },
+                error: function () {
+                    alert(data.desc);
+                }
+			})
+        }
+
+	</script>
+</html>
