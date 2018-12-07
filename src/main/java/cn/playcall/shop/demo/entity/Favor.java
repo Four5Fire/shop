@@ -9,6 +9,9 @@ public class Favor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer favorId;
+
+    @Column(name = "user_id")
     private Integer userId;
 
     @Column(name = "product_id")
@@ -16,6 +19,14 @@ public class Favor {
 
     @Column(name = "pre_cost")
     private BigDecimal preCost;
+
+    public Integer getFavorId() {
+        return favorId;
+    }
+
+    public void setFavorId(Integer favorId) {
+        this.favorId = favorId;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -44,7 +55,8 @@ public class Favor {
     @Override
     public String toString() {
         return "Favor{" +
-                "userId=" + userId +
+                "favorId=" + favorId +
+                ", userId=" + userId +
                 ", productId=" + productId +
                 ", preCost=" + preCost +
                 '}';

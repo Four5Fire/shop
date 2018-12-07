@@ -94,7 +94,21 @@ public class OrderController {
     public String orderStoreIndex(HttpServletRequest request,Model model){
         HttpSession session = request.getSession();
         Shop shop = (Shop) session.getAttribute("ShopUser");
-        model.addAttribute("user","shopUser");
+        if (session.getAttribute("type") == null){
+            session.setAttribute("type","0");
+            model.addAttribute("user","nologin");
+        }
+        else {
+            String type = (String) session.getAttribute("type");
+            if (type.equals("1")){
+                model.addAttribute("user","user");
+            }
+            else if (type.equals("2")){
+                model.addAttribute("user","shopUser");
+            }else {
+                model.addAttribute("user","nologin");
+            }
+        }
         model.addAttribute("bottomInfo","bottomInfo");
         ArrayList<OrderShop> orderShopArrayList = new ArrayList<>();
         List<Product> productList = productDao.findAllByShopId(shop.getShopId());

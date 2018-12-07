@@ -17,7 +17,7 @@ public class LogoutController {
     public String Logout(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         session.invalidate();
-        model.addAttribute("user","nouser");
+        model.addAttribute("user","nologin");
         return "redirect:index";
     }
 }

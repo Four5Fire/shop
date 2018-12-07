@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @CrossOrigin
@@ -36,7 +37,22 @@ public class ProductDetailController {
 
     @RequestMapping(value = "/productDetail/{productId}")
     public String productDetailIndex(HttpServletRequest request, Model model, @PathVariable String productId){
-        model.addAttribute("user","user");
+        HttpSession session = request.getSession();
+        if (session.getAttribute("type") == null){
+            session.setAttribute("type","0");
+            model.addAttribute("user","nologin");
+        }
+        else {
+            String type = (String) session.getAttribute("type");
+            if (type.equals("1")){
+                model.addAttribute("user","user");
+            }
+            else if (type.equals("2")){
+                model.addAttribute("user","shopUser");
+            }else {
+                model.addAttribute("user","nologin");
+            }
+        }
         model.addAttribute("search","search");
         List<Item> itemList = itemDao.findAll();
         model.addAttribute("ulList","ulList");

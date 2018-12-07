@@ -1,12 +1,10 @@
 package cn.playcall.shop.demo.controller;
 
+import cn.playcall.shop.demo.dao.FavorDao;
 import cn.playcall.shop.demo.dao.HistoryDao;
 import cn.playcall.shop.demo.dao.ItemDao;
 import cn.playcall.shop.demo.dao.ProductDao;
-import cn.playcall.shop.demo.entity.History;
-import cn.playcall.shop.demo.entity.Item;
-import cn.playcall.shop.demo.entity.Product;
-import cn.playcall.shop.demo.entity.Shop;
+import cn.playcall.shop.demo.entity.*;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +36,9 @@ public class ProductUpdateController {
 
     @Autowired
     private HistoryDao historyDao;
+
+    @Autowired
+    private FavorDao favorDao;
 
     @RequestMapping(value = "/productInfoUpdateIndex/{productId}")
     public String ProductInfoUpdateIndex(HttpServletRequest request, Model model, @PathVariable String productId){
@@ -80,8 +81,15 @@ public class ProductUpdateController {
             product.setItemId(Integer.parseInt(updateJson.getString("productItem")));
             product.setStock(Integer.parseInt(updateJson.getString("productNum")));
             product.setIntro(updateJson.getString("productIntro"));
+
+            List<Favor> favorList = favorDao.findAllByProductId(Integer.parseInt(productId));
+            for (Favor favor:favorList) {
+                favor.setPreCost(product.getPriceOriginal());
+            }
+
             productDao.flush();
             historyDao.save(history);
+            favorDao.flush();
         }else {
             product.setPriceOriginal(new BigDecimal(updateJson.getString("productPrice")));
             product.setBrand(updateJson.getString("productBrand"));

@@ -42,7 +42,22 @@ public class CommentController {
     public String commentClient(HttpServletRequest request, Model model, @PathVariable String saleId){
         Sale sale = saleDao.findBySaleId(Integer.parseInt(saleId));
         Product product = productDao.findByProductId(sale.getProductId());
-        model.addAttribute("user","user");
+        HttpSession session = request.getSession();
+        if (session.getAttribute("type") == null){
+            session.setAttribute("type","0");
+            model.addAttribute("user","nologin");
+        }
+        else {
+            String type = (String) session.getAttribute("type");
+            if (type.equals("1")){
+                model.addAttribute("user","user");
+            }
+            else if (type.equals("2")){
+                model.addAttribute("user","shopUser");
+            }else {
+                model.addAttribute("user","nologin");
+            }
+        }
         model.addAttribute("search","search");
         model.addAttribute("ulList","ulList");
         List<Item> itemList = itemDao.findAll();
