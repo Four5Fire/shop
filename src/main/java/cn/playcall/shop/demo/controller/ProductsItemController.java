@@ -42,7 +42,7 @@ public class ProductsItemController {
                 break;
         }
         model.addAttribute("addCart","添加至购物车");
-        model.addAttribute("urlApi","http://127.0.0.1:7000/shop/cartAddProduct/");
+        model.addAttribute("urlApi","http://120.79.70.13:7000/shop/cartAddProduct/");
         session.setAttribute("item", itemId);
         model.addAttribute("search","search");
         model.addAttribute("ulList","ulList");
@@ -52,7 +52,7 @@ public class ProductsItemController {
         List<Product> productList = productDao.findAllByItemId(Integer.parseInt(itemId));
         model.addAttribute("productList",productList);
 
-        model.addAttribute("productsApi","http://127.0.0.1:7000/shop/productsIndex/");
+        model.addAttribute("productsApi","http://120.79.70.13:7000/shop/productsIndex/");
         return "productsItem";
 
     }

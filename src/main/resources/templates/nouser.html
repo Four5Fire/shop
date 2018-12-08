@@ -6,28 +6,28 @@
 </head>
 <body>
 <div class="nav" th:fragment="nologin">
-    <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" onclick="window.location.href='http://127.0.0.1:7000/shop/index';"/>
+    <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" onclick="window.location.href='http://120.79.70.13:7000/shop/index';"/>
     <div class="nav_right">
-        <a href="http://127.0.0.1:7000/shop/login">Login</a>
-        <a href="http://127.0.0.1:7000/shop/registry">Register</a>
+        <a href="http://120.79.70.13:7000/shop/login">Login</a>
+        <a href="http://120.79.70.13:7000/shop/registry">Register</a>
     </div>
 </div>
 <div class="nav" th:fragment="user">
-    <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" onclick="window.location.href='http://127.0.0.1:7000/shop/index';"/>
+    <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" onclick="window.location.href='http://120.79.70.13:7000/shop/index';"/>
     <div class="nav_right">
-        <img th:src="@{/static/img/收藏夹.png}" onmouseover="this.src = '/static/img/收藏夹鼠标悬浮.png';" onmouseout="this.src = '/static/img/收藏夹.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/favorIndex';"/>
-        <img th:src="@{/static/img/订单.png}" onmouseover="this.src = '/static/img/订单鼠标悬浮.png';" onmouseout="this.src = '/static/img/订单.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/orderClient';"/>
-        <img th:src="@{/static/img/用户白底.png}" onmouseover="this.src = '/static/img/用户鼠标悬浮.png';" onmouseout="this.src = '/static/img/用户白底.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/userinfo';"/>
-        <img th:src="@{/static/img/购物车.png}" onmouseover="this.src = '/static/img/购物车鼠标悬浮.png';" onmouseout="this.src = '/static/img/购物车.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/cart';"/>
-        <a href="http://127.0.0.1:7000/shop/logout">Logout</a>
+        <img th:src="@{/static/img/收藏夹.png}" onmouseover="this.src = '/static/img/收藏夹鼠标悬浮.png';" onmouseout="this.src = '/static/img/收藏夹.png';" onclick="window.location.href='http://120.79.70.13:7000/shop/favorIndex';"/>
+        <img th:src="@{/static/img/订单.png}" onmouseover="this.src = '/static/img/订单鼠标悬浮.png';" onmouseout="this.src = '/static/img/订单.png';" onclick="window.location.href='http://120.79.70.13:7000/shop/orderClient';"/>
+        <img th:src="@{/static/img/用户白底.png}" onmouseover="this.src = '/static/img/用户鼠标悬浮.png';" onmouseout="this.src = '/static/img/用户白底.png';" onclick="window.location.href='http://120.79.70.13:7000/shop/userinfo';"/>
+        <img th:src="@{/static/img/购物车.png}" onmouseover="this.src = '/static/img/购物车鼠标悬浮.png';" onmouseout="this.src = '/static/img/购物车.png';" onclick="window.location.href='http://120.79.70.13:7000/shop/cart';"/>
+        <a href="http://120.79.70.13:7000/shop/logout">Logout</a>
     </div>
 </div>
 <div th:fragment="shopUser">
-    <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" onclick="window.location.href='http://127.0.0.1:7000/shop/index';"/>
+    <img th:src="@{/static/img/logo.png}" style="height: 60px; width: auto" onclick="window.location.href='http://120.79.70.13:7000/shop/index';"/>
     <div class="nav_right">
-        <img th:src="@{/static/img/订单.png}" onmouseover="this.src = '/static/img/订单鼠标悬浮.png';" onmouseout="this.src = '/static/img/订单.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/orderStore';" />
-        <img th:src="@{/static/img/店铺.png}" onmouseover="this.src = '/static/img/店铺鼠标悬浮.png';" onmouseout="this.src = '/static/img/店铺.png';" onclick="window.location.href='http://127.0.0.1:7000/shop/store';" />
-        <a href="http://127.0.0.1:7000/shop/logout">Logout</a>
+        <img th:src="@{/static/img/订单.png}" onmouseover="this.src = '/static/img/订单鼠标悬浮.png';" onmouseout="this.src = '/static/img/订单.png';" onclick="window.location.href='http://120.79.70.13:7000/shop/orderStore';" />
+        <img th:src="@{/static/img/店铺.png}" onmouseover="this.src = '/static/img/店铺鼠标悬浮.png';" onmouseout="this.src = '/static/img/店铺.png';" onclick="window.location.href='http://120.79.70.13:7000/shop/store';" />
+        <a href="http://120.79.70.13:7000/shop/logout">Logout</a>
     </div>
 </div>
 <div th:fragment="search">
@@ -49,12 +49,12 @@
             sss = JSON.stringify(sss);
             $.ajax({
                 type:'post',
-                url:"http://127.0.0.1:7000/shop/searchProduct",
+                url:"http://120.79.70.13:7000/shop/searchProduct",
                 data:sss,
                 async:false,
                 contentType: 'application/json;charset=utf-8',
                 success:function () {
-                    window.location.href = "http://127.0.0.1:7000/shop/searchIndex";
+                    window.location.href = "http://120.79.70.13:7000/shop/searchIndex";
                 },
                 error:function () {
 
@@ -64,7 +64,7 @@
     </script>
 </div>
 <div th:fragment="bottomInfo">
-    <a href="http://127.0.0.1:7000/shop/aboutUs">About us</a>
+    <a href="http://120.79.70.13:7000/shop/aboutUs">About us</a>
     <p>
         Copyright © 2018.DingDang shopping All rights reserved.
     </p>
@@ -89,12 +89,12 @@
                             <div class=four>
                                 <figure>
                                     <div class="five">
-                                        <a th:href="'http://127.0.0.1:7000/shop/productInfoUpdateIndex/'+${product.getProductId()}"><img title=" " alt=" " th:src="@{${product.getPic()}}"></a>
+                                        <a th:href="'http://120.79.70.13:7000/shop/productInfoUpdateIndex/'+${product.getProductId()}"><img title=" " alt=" " th:src="@{${product.getPic()}}"></a>
                                         <p th:text="${product.getProductName()}"></p>
                                         <h4 th:text="${product.getPriceOriginal()}" th:if="${#lists.isEmpty(product.getPriceOriginal())}"></h4>
                                     </div>
                                     <div class="six">
-                                        <input th:id="${product.getProductId()}" type="button" name="submit" value="修改商品信息" class="button" onclick="window.location.href='http://127.0.0.1:7000/shop/productInfoUpdateIndex/'+this.id;"/>
+                                        <input th:id="${product.getProductId()}" type="button" name="submit" value="修改商品信息" class="button" onclick="window.location.href='http://120.79.70.13:7000/shop/productInfoUpdateIndex/'+this.id;"/>
                                     </div>
                                 </figure>
                             </div>
